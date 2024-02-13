@@ -3,6 +3,8 @@ import LandingPage from "../pages/LandingPage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import AddEmotionPage from "../pages/AddEmotionPage";
+import RedirectIfAuth from "./RedirectIfAuth";
+import ProtectRoutes from "./ProtectRoutes";
 
 const router = createBrowserRouter([
   {
@@ -11,15 +13,27 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <LoginPage />,
+    element: (
+      <RedirectIfAuth>
+        <LoginPage />,
+      </RedirectIfAuth>
+    ),
   },
   {
     path: "/register",
-    element: <RegisterPage />,
+    element: (
+      <RedirectIfAuth>
+        <RegisterPage />,
+      </RedirectIfAuth>
+    ),
   },
   {
     path: "/addEmotion",
-    element: <AddEmotionPage />,
+    element: (
+      <ProtectRoutes>
+        <AddEmotionPage />,
+      </ProtectRoutes>
+    ),
   },
 ]);
 
