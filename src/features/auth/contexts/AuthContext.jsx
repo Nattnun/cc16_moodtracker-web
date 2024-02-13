@@ -10,14 +10,18 @@ export default function AuthContextProvider({ children }) {
   const [authUser, setAuthUser] = useState(null);
 
   useEffect(() => {
-    if (getToken()) {
-      try {
-        const res = authApi.fetchUser();
-        setAuthUser(res.data.user);
-      } catch (err) {
-        console.log(err);
+    async function fetchUser() {
+      if (getToken()) {
+        try {
+          const res = await authApi.fetchUser();
+          console.log(res);
+          setAuthUser(res.data.user);
+        } catch (err) {
+          console.log(err);
+        }
       }
     }
+    fetchUser();
   }, []);
 
   const register = async (user) => {
