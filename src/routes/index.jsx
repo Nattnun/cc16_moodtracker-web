@@ -1,15 +1,23 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import LandingPage from "../pages/LandingPage";
-import LoginPage from "../pages/LoginPage";
-import RegisterPage from "../pages/RegisterPage";
-import AddEmotionPage from "../pages/AddEmotionPage";
+import LandingPage from "../pages/authPages/LandingPage";
+import LoginPage from "../pages/authPages/LoginPage";
+import RegisterPage from "../pages/authPages/RegisterPage";
+import AddEmotionPage from "../pages/emotionFormPages/AddEmotionPage";
 import RedirectIfAuth from "./RedirectIfAuth";
 import ProtectRoutes from "./ProtectRoutes";
+import Container from "../layouts/Container";
+import GroupEmotionPage from "../pages/emotionFormPages/GroupEmotionPage";
+import HEUEmotionsPage from "../features/emotion/components/HEUEmotionsPage";
+import EmotionThemePage from "../pages/emotionFormPages/EmotionThemePage";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LandingPage />,
+    element: (
+      <RedirectIfAuth>
+        <LandingPage />,
+      </RedirectIfAuth>
+    ),
   },
   {
     path: "/login",
@@ -31,9 +39,27 @@ const router = createBrowserRouter([
     path: "/addEmotion",
     element: (
       <ProtectRoutes>
-        <AddEmotionPage />,
+        <Container />,
       </ProtectRoutes>
     ),
+    children: [
+      {
+        path: "",
+        element: <AddEmotionPage />,
+      },
+      {
+        path: "emotionGroup",
+        element: <GroupEmotionPage />,
+      },
+      {
+        path: "heuEmotions",
+        element: <HEUEmotionsPage />,
+      },
+      {
+        path: "theme",
+        element: <EmotionThemePage />,
+      },
+    ],
   },
 ]);
 

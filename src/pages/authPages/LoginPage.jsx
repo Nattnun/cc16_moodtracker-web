@@ -1,6 +1,6 @@
 import React from "react";
-import MoodTrackerLogo02 from "../components/MoodTrackerLogo02";
-import LoginForm from "../features/auth/components/LoginForm";
+import MoodTrackerLogo02 from "../../components/MoodTrackerLogo02";
+import LoginForm from "../../features/auth/components/LoginForm";
 
 export default function LoginPage() {
   return (

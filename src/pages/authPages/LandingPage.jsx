@@ -1,5 +1,5 @@
 import React from "react";
-import MoodTrackerLogo01 from "../components/MoodTrackerLogo01";
+import MoodTrackerLogo01 from "../../components/MoodTrackerLogo01";
 import { Link } from "react-router-dom";
 
 export default function LandingPage() {
