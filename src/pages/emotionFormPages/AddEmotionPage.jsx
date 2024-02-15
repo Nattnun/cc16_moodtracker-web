@@ -5,10 +5,19 @@ import { AuthContext } from "../../features/auth/contexts/AuthContext";
 import { Link } from "react-router-dom";
 import Footer from "../../layouts/Footer";
 import NavBar from "../../layouts/NavBar";
+import { EmotionContext } from "../../features/emotion/contexts/EmotionContext";
+import { useEffect } from "react";
 
 export default function AddEmotionPage() {
   const { authUser } = useContext(AuthContext);
+  const { emotionMemo, setEmotionMemo } = useContext(EmotionContext);
+
+  useEffect(() => {
+    setEmotionMemo({ ...emotionMemo, userId: authUser.id });
+  }, []);
+
   console.log(authUser);
+
   return (
     <div className=" h-full  flex flex-col justify-center items-center gap-8">
       <NavBar />

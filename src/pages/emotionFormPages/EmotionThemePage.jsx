@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import NavBar2 from "../../layouts/NavBar2";
 
 export default function EmotionThemePage() {
-  const { feeling } = useContext(EmotionContext);
+  const { feeling, setEmotionMemo, emotionMemo } = useContext(EmotionContext);
   const {
     getThemeByUserId,
     theme,
@@ -61,8 +61,17 @@ export default function EmotionThemePage() {
     }
   };
 
-  const handleOnClick = (e) => {
-    console.log(e.target.value);
+  const handleOnClickTheme = (e) => {
+    console.log("theme", e.target.value);
+    setEmotionMemo({ ...emotionMemo, themeId: +e.target.value });
+  };
+  const handleOnClickPlace = (e) => {
+    console.log("place", e.target.value);
+    setEmotionMemo({ ...emotionMemo, placeId: +e.target.value });
+  };
+  const handleOnClickPeople = (e) => {
+    console.log("people", e.target.value);
+    setEmotionMemo({ ...emotionMemo, peopleId: +e.target.value });
   };
 
   return (
@@ -85,7 +94,7 @@ export default function EmotionThemePage() {
                 <button
                   key={el.id}
                   value={el.id}
-                  onClick={handleOnClick}
+                  onClick={handleOnClickTheme}
                   className="border px-[1rem] rounded-full"
                 >
                   {el.name}
@@ -106,7 +115,7 @@ export default function EmotionThemePage() {
                 <button
                   key={el.id}
                   value={el.id}
-                  onClick={handleOnClick}
+                  onClick={handleOnClickPlace}
                   className="border px-[1rem] rounded-full"
                 >
                   {el.name}
@@ -127,7 +136,7 @@ export default function EmotionThemePage() {
                 <button
                   key={el.id}
                   value={el.id}
-                  onClick={handleOnClick}
+                  onClick={handleOnClickPeople}
                   className="border px-[1rem] rounded-full"
                 >
                   {el.name}

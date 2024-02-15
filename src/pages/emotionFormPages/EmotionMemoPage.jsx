@@ -4,9 +4,15 @@ import { EmotionContext } from "../../features/emotion/contexts/EmotionContext";
 import { Link } from "react-router-dom";
 import CheckIcon from "../../components/icons/CheckIcon";
 import TextAreaInput from "../../components/TextAreaInput";
+import NavBar2 from "../../layouts/NavBar2";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function EmotionMemoPage() {
-  const { feeling } = useContext(EmotionContext);
+  const { feeling, emotionMemo, setEmotionMemo, createEmotionMemo } =
+    useContext(EmotionContext);
+
+  const navigate = useNavigate();
 
   const Color = () => {
     if (feeling.emotionalGroup === "HIGH_ENERGY_UNPLEASANT") {
@@ -22,22 +28,34 @@ export default function EmotionMemoPage() {
       return "peaceGreen";
     }
   };
+
+  const handleOnChange = (e) => {
+    setEmotionMemo({ ...emotionMemo, memo: e.target.value });
+  };
+
+  const handleSubmit = () => {
+    createEmotionMemo(emotionMemo);
+    navigate("/addEmotion");
+  };
+
   return (
     <div className="flex flex-col gap-12 justify-center items-center">
+      <NavBar2 path={"/addEmotion/theme"} />
       <div
         className={`w-[364px] h-[364px] bg-${Color()} flex justify-center items-center rounded-full`}
       >
         <TextAreaInput
           placeholder={`Describe what might be causing you feel ${feeling.name}...`}
+          onChange={handleOnChange}
+          value={emotionMemo.memo}
         />
       </div>
-      <Link to="/addEmotion/memo">
-        <button
-          className={`btn w-[52px] h-[52px] flex justify-center items-center bg-${Color()} rounded-full`}
-        >
-          <CheckIcon />
-        </button>
-      </Link>
+      <button
+        onClick={handleSubmit}
+        className={`btn w-[52px] h-[52px] flex justify-center items-center bg-${Color()} rounded-full`}
+      >
+        <CheckIcon />
+      </button>
       <div className="w-[100px] h-[100px]"></div>
     </div>
   );

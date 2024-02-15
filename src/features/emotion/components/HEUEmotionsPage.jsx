@@ -9,8 +9,14 @@ import { Link } from "react-router-dom";
 import NavBar2 from "../../../layouts/NavBar2";
 
 export default function HEUEmotionsPage() {
-  const { getEmotionsByGroup, emotions, getEmotionById, feeling } =
-    useContext(EmotionContext);
+  const {
+    getEmotionsByGroup,
+    emotions,
+    getEmotionById,
+    feeling,
+    setEmotionMemo,
+    emotionMemo,
+  } = useContext(EmotionContext);
   // const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,6 +27,7 @@ export default function HEUEmotionsPage() {
     getEmotionById(e.target.value);
     console.log(e.target.value);
     console.log("fromEmotions", feeling);
+    setEmotionMemo({ ...emotionMemo, emotionId: +e.target.value });
   };
   return (
     <>

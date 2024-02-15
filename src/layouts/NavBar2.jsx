@@ -8,14 +8,14 @@ import { AuthContext } from "../features/auth/contexts/AuthContext";
 import BackIcon from "../components/icons/BackIcon";
 import { Link } from "react-router-dom";
 
-export default function NavBar2({ path }) {
+export default function NavBar2({ path, onClick }) {
   const { logout } = useContext(AuthContext);
   return (
     <>
       <div className="relative">
         <div className="fixed top-0 left-0 right-0 w-[430px] mx-auto">
           <Link to={path}>
-            <div className="absolute top-6 left-6">
+            <div onClick={onClick} className="absolute top-6 left-6">
               <BackIcon />
             </div>
           </Link>
