@@ -9,6 +9,8 @@ import Container from "../layouts/Container";
 import GroupEmotionPage from "../pages/emotionFormPages/GroupEmotionPage";
 import HEUEmotionsPage from "../features/emotion/components/HEUEmotionsPage";
 import EmotionThemePage from "../pages/emotionFormPages/EmotionThemePage";
+import EmotionMemoPage from "../pages/emotionFormPages/EmotionMemoPage";
+import ProfilePage from "../pages/utilsPages/ProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +38,14 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/profile",
+    element: (
+      <ProtectRoutes>
+        <ProfilePage />,
+      </ProtectRoutes>
+    ),
+  },
+  {
     path: "/addEmotion",
     element: (
       <ProtectRoutes>
@@ -58,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: "theme",
         element: <EmotionThemePage />,
+      },
+      {
+        path: "memo",
+        element: <EmotionMemoPage />,
       },
     ],
   },

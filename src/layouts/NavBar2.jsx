@@ -5,14 +5,20 @@ import ProfileIcon from "../components/icons/ProfileIcon";
 import LogoutIcon from "../components/icons/LogoutIcon";
 import { useContext } from "react";
 import { AuthContext } from "../features/auth/contexts/AuthContext";
+import BackIcon from "../components/icons/BackIcon";
 import { Link } from "react-router-dom";
 
-export default function NavBar() {
+export default function NavBar2({ path }) {
   const { logout } = useContext(AuthContext);
   return (
     <>
       <div className="relative">
-        <div className="fixed top-0 left-0 right-0 bg-red-500 w-[430px] mx-auto">
+        <div className="fixed top-0 left-0 right-0 w-[430px] mx-auto">
+          <Link to={path}>
+            <div className="absolute top-6 left-6">
+              <BackIcon />
+            </div>
+          </Link>
           <div className="dropdown dropdown-end absolute right-4 top-4">
             <div
               tabIndex={0}
@@ -26,14 +32,12 @@ export default function NavBar() {
               className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-[387px]"
             >
               <li>
-                <Link to="/profile">
-                  <div className="text-xl flex">
-                    <div className="">
-                      <ProfileIcon />
-                    </div>
-                    <div className=" font-semibold">Profile</div>
+                <div className="text-xl">
+                  <div className="">
+                    <ProfileIcon />
                   </div>
-                </Link>
+                  <div className=" font-semibold">Profile</div>
+                </div>
               </li>
               <hr />
               <li>
