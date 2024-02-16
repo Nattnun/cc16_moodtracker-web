@@ -21,13 +21,13 @@ export default function EmotionThemePage() {
   const { authUser } = useContext(AuthContext);
 
   useEffect(() => {
-    console.log("authUser", authUser);
+    // console.log("authUser", authUser);
     getThemeByUserId(authUser.id);
     getPlaceByUserId(authUser.id);
     getPeopleByUserId(authUser.id);
-    console.log("theme", theme);
-    console.log("place", place);
-    console.log("people", people);
+    // console.log("theme", theme);
+    // console.log("place", place);
+    // console.log("people", people);
   }, []);
 
   const textDefault = "text-4xl font-semibold";
@@ -51,26 +51,30 @@ export default function EmotionThemePage() {
       return "/addEmotion/heuEmotions";
     }
     if (feeling.emotionalGroup === "HIGH_ENERGY_PLEASANT") {
-      return "";
+      return "/addEmotion/hepEmotions";
     }
     if (feeling.emotionalGroup === "LOW_ENERGY_UNPLEASANT") {
-      return "";
+      return "/addEmotion/leuEmotions";
     }
     if (feeling.emotionalGroup === "LOW_ENERGY_PLEASANT") {
-      return "";
+      return "/addEmotion/lepEmotions";
     }
   };
 
+  useEffect(() => {
+    setEmotionMemo({ ...emotionMemo, themeId: "", placeId: "", peopleId: "" });
+  }, []);
+
   const handleOnClickTheme = (e) => {
-    console.log("theme", e.target.value);
+    // console.log("theme", e.target.value);
     setEmotionMemo({ ...emotionMemo, themeId: +e.target.value });
   };
   const handleOnClickPlace = (e) => {
-    console.log("place", e.target.value);
+    // console.log("place", e.target.value);
     setEmotionMemo({ ...emotionMemo, placeId: +e.target.value });
   };
   const handleOnClickPeople = (e) => {
-    console.log("people", e.target.value);
+    // console.log("people", e.target.value);
     setEmotionMemo({ ...emotionMemo, peopleId: +e.target.value });
   };
 
@@ -95,7 +99,9 @@ export default function EmotionThemePage() {
                   key={el.id}
                   value={el.id}
                   onClick={handleOnClickTheme}
-                  className="border px-[1rem] rounded-full"
+                  className={`border px-[1rem] rounded-full ${
+                    emotionMemo.themeId == el.id ? `bg-${Color()}` : null
+                  }`}
                 >
                   {el.name}
                 </button>
@@ -116,7 +122,9 @@ export default function EmotionThemePage() {
                   key={el.id}
                   value={el.id}
                   onClick={handleOnClickPlace}
-                  className="border px-[1rem] rounded-full"
+                  className={`border px-[1rem] rounded-full ${
+                    emotionMemo.placeId == el.id ? `bg-${Color()}` : null
+                  }`}
                 >
                   {el.name}
                 </button>
@@ -137,7 +145,9 @@ export default function EmotionThemePage() {
                   key={el.id}
                   value={el.id}
                   onClick={handleOnClickPeople}
-                  className="border px-[1rem] rounded-full"
+                  className={`border px-[1rem] rounded-full ${
+                    emotionMemo.peopleId == el.id ? `bg-${Color()}` : null
+                  }`}
                 >
                   {el.name}
                 </button>

@@ -11,6 +11,9 @@ import HEUEmotionsPage from "../features/emotion/components/HEUEmotionsPage";
 import EmotionThemePage from "../pages/emotionFormPages/EmotionThemePage";
 import EmotionMemoPage from "../pages/emotionFormPages/EmotionMemoPage";
 import ProfilePage from "../pages/utilsPages/ProfilePage";
+import HEPEmotionsPage from "../features/emotion/components/HEPEmotionsPage";
+import LEUEmotionsPage from "../features/emotion/components/LEUEmotionsPage";
+import LEPEmotionsPage from "../features/emotion/components/LEPEmotionsPage";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +67,18 @@ const router = createBrowserRouter([
       {
         path: "heuEmotions",
         element: <HEUEmotionsPage />,
+      },
+      {
+        path: "hepEmotions",
+        element: <HEPEmotionsPage />,
+      },
+      {
+        path: "leuEmotions",
+        element: <LEUEmotionsPage />,
+      },
+      {
+        path: "lepEmotions",
+        element: <LEPEmotionsPage />,
       },
       {
         path: "theme",

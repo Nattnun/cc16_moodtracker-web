@@ -8,7 +8,7 @@ import CheckIcon from "../../../components/icons/CheckIcon";
 import { Link } from "react-router-dom";
 import NavBar2 from "../../../layouts/NavBar2";
 
-export default function HEUEmotionsPage() {
+export default function HEPEmotionsPage() {
   const {
     getEmotionsByGroup,
     emotions,
@@ -20,7 +20,7 @@ export default function HEUEmotionsPage() {
   } = useContext(EmotionContext);
 
   useEffect(() => {
-    getEmotionsByGroup({ emotionalGroup: "HIGH_ENERGY_UNPLEASANT" });
+    getEmotionsByGroup({ emotionalGroup: "HIGH_ENERGY_PLEASANT" });
     setFeeling(null);
   }, []);
 
@@ -41,7 +41,7 @@ export default function HEUEmotionsPage() {
                 key={el.id}
                 onClick={handleClick}
                 value={el.id}
-                className="btn bg-angryRed w-[120px] h-[120px] flex justify-center items-center rounded-full"
+                className="btn bg-happyYellow w-[120px] h-[120px] flex justify-center items-center rounded-full"
               >
                 {el.name}
               </button>
@@ -55,7 +55,7 @@ export default function HEUEmotionsPage() {
           <div>{feeling.description}</div>
           <Link to="/addEmotion/theme">
             <button
-              className={`btn w-[52px] h-[52px] flex justify-center items-center border-none bg-angryRed rounded-full`}
+              className={`btn w-[52px] h-[52px] flex justify-center items-center border-none bg-happyYellow rounded-full`}
             >
               <CheckIcon />
             </button>

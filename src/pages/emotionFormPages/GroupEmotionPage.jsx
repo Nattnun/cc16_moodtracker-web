@@ -14,15 +14,21 @@ export default function GroupEmotionPage() {
             <div className="text-center">HIGH ENERGY UNPLEASANT</div>
           </div>
         </Link>
-        <div className="btn bg-happyYellow w-[148px] h-[148px] rounded-full flex justify-center items-center">
-          <div className="text-center">HIGH ENERGY PLEASANT</div>
-        </div>
-        <div className="btn bg-sadBlue w-[148px] h-[148px] rounded-full flex justify-center items-center">
-          <div className="text-center">LOW ENERGY UNPLEASANT</div>
-        </div>
-        <div className="btn bg-peaceGreen w-[148px] h-[148px] rounded-full flex justify-center items-center">
-          <div className="text-center">LOW ENERGY PLEASANT</div>
-        </div>
+        <Link to="/addEmotion/hepEmotions">
+          <div className="btn bg-happyYellow w-[148px] h-[148px] rounded-full flex justify-center items-center">
+            <div className="text-center">HIGH ENERGY PLEASANT</div>
+          </div>
+        </Link>
+        <Link to="/addEmotion/leuEmotions">
+          <div className="btn bg-sadBlue w-[148px] h-[148px] rounded-full flex justify-center items-center">
+            <div className="text-center">LOW ENERGY UNPLEASANT</div>
+          </div>
+        </Link>
+        <Link to="/addEmotion/lepEmotions">
+          <div className="btn bg-peaceGreen w-[148px] h-[148px] rounded-full flex justify-center items-center">
+            <div className="text-center">LOW ENERGY PLEASANT</div>
+          </div>
+        </Link>
       </div>
     </>
   );

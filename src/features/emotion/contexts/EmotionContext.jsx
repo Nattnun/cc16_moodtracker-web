@@ -42,6 +42,7 @@ export default function EmotionContextProvider({ children }) {
         emotions,
         getEmotionById,
         feeling,
+        setFeeling,
         setEmotionMemo,
         emotionMemo,
         createEmotionMemo,
