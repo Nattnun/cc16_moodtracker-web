@@ -21,6 +21,7 @@ export default function LEPEmotionsPage() {
 
   useEffect(() => {
     getEmotionsByGroup({ emotionalGroup: "LOW_ENERGY_PLEASANT" });
+    setEmotionMemo({ ...emotionMemo, emotionId: "" });
     setFeeling(null);
   }, []);
 
@@ -41,7 +42,9 @@ export default function LEPEmotionsPage() {
                 key={el.id}
                 onClick={handleClick}
                 value={el.id}
-                className="btn bg-peaceGreen w-[120px] h-[120px] flex justify-center items-center rounded-full"
+                className={`btn bg-peaceGreen w-[120px] h-[120px] flex justify-center items-center ${
+                  emotionMemo.emotionId == el.id ? "rounded-xl" : "rounded-full"
+                }`}
               >
                 {el.name}
               </button>
