@@ -6,3 +6,6 @@ export const getLatestMemo = (userId) =>
   axios.get(`/memo/getLatestMemo/${userId}`);
 
 export const getAllMemo = (userId) => axios.get(`/memo/getAllMemo/${userId}`);
+
+export const getBreakDownMemo = (userId) =>
+  axios.get(`/memo/getBreakDownMemo/${userId}`);

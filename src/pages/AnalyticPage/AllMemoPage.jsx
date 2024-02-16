@@ -12,15 +12,15 @@ export default function AllMemoPage() {
   useEffect(() => {
     getAllMemo(authUser.id);
   }, []);
-  console.log("analytic", allMemo);
+  //   console.log("analytic", allMemo);
 
   return (
-    <div className="h-screen">
+    <div className="min-h-screen w-[430px] mx-auto">
       <h3 className="text-2xl font-semibold text-center">
         All the emotion you feel
       </h3>
       <div className="h-[2rem]"></div>
-      <div className="grid grid-cols-4 overflow-auto gap-4">
+      <div className="grid grid-cols-4 gap-4 mx-8">
         {allMemo.map((el) => {
           function Color() {
             if (el.emotion.emotionalGroup === "HIGH_ENERGY_UNPLEASANT") {
@@ -38,6 +38,7 @@ export default function AllMemoPage() {
           }
           return (
             <div
+              key={el.id}
               className={`w-[80px] h-[80px] text-xs flex items-center justify-center rounded-full bg-${Color()}`}
             >
               {el.emotion.name}

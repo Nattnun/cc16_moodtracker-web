@@ -8,6 +8,7 @@ export default function MemoContextProvider({ children }) {
   const [emotionMemo, setEmotionMemo] = useState({});
   const [latestMemo, setLatestMemo] = useState({});
   const [allMemo, setAllMemo] = useState([]);
+  const [breakDown, setBreakDown] = useState([]);
 
   const createEmotionMemo = async (memo) => {
     const res = await memoApi.createEmotionMemo(memo);
@@ -27,8 +28,18 @@ export default function MemoContextProvider({ children }) {
   const getAllMemo = async (userId) => {
     try {
       const memo = await memoApi.getAllMemo(userId);
-      console.log("AllMemo", memo.data);
+      // console.log("AllMemo", memo.data);
       setAllMemo(memo.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getBreakDown = async (userId) => {
+    try {
+      const breakDownMemo = await memoApi.getBreakDownMemo(userId);
+      console.log("breakDown", breakDownMemo.data);
+      setBreakDown(breakDownMemo.data);
     } catch (err) {
       console.log(err);
     }
@@ -44,6 +55,8 @@ export default function MemoContextProvider({ children }) {
         latestMemo,
         getAllMemo,
         allMemo,
+        getBreakDown,
+        breakDown,
       }}
     >
       {children}
