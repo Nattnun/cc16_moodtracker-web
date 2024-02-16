@@ -5,7 +5,13 @@ import { createContext } from "react";
 export const MemoContext = createContext();
 
 export default function MemoContextProvider({ children }) {
+  const [emotionMemo, setEmotionMemo] = useState({});
   const [latestMemo, setLatestMemo] = useState({});
+
+  const createEmotionMemo = async (memo) => {
+    const res = await memoApi.createEmotionMemo(memo);
+    console.log(res);
+  };
 
   const getLatestMemo = async (userId) => {
     try {
@@ -18,7 +24,15 @@ export default function MemoContextProvider({ children }) {
   };
 
   return (
-    <MemoContext.Provider value={{ getLatestMemo, latestMemo }}>
+    <MemoContext.Provider
+      value={{
+        emotionMemo,
+        setEmotionMemo,
+        createEmotionMemo,
+        getLatestMemo,
+        latestMemo,
+      }}
+    >
       {children}
     </MemoContext.Provider>
   );

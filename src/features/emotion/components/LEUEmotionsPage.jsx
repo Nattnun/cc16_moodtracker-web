@@ -7,21 +7,16 @@ import { useNavigate } from "react-router-dom";
 import CheckIcon from "../../../components/icons/CheckIcon";
 import { Link } from "react-router-dom";
 import NavBar2 from "../../../layouts/NavBar2";
+import { MemoContext } from "../contexts/MemoContext";
 
 export default function LEUEmotionsPage() {
-  const {
-    getEmotionsByGroup,
-    emotions,
-    getEmotionById,
-    feeling,
-    setFeeling,
-    setEmotionMemo,
-    emotionMemo,
-  } = useContext(EmotionContext);
+  const { getEmotionsByGroup, emotions, getEmotionById, feeling, setFeeling } =
+    useContext(EmotionContext);
+  const { setEmotionMemo, emotionMemo } = useContext(MemoContext);
 
   useEffect(() => {
     getEmotionsByGroup({ emotionalGroup: "LOW_ENERGY_UNPLEASANT" });
-    setEmotionMemo({ ...emotionMemo, emotionId: "" });
+    setEmotionMemo({ ...emotionMemo, emotionId: null });
     setFeeling(null);
   }, []);
 

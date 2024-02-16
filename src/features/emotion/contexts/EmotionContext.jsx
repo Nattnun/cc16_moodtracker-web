@@ -5,19 +5,19 @@ import * as memoApi from "../../../api/memo";
 
 export const EmotionContext = createContext();
 
-const initial = {
-  userId: "",
-  memo: "",
-  emotionId: "",
-  themeId: "",
-  placeId: "",
-  peopleId: "",
-};
+// const initial = {
+//   userId: "",
+//   memo: "",
+//   emotionId: "",
+//   themeId: "",
+//   placeId: "",
+//   peopleId: "",
+// };
 
 export default function EmotionContextProvider({ children }) {
   const [emotions, setEmotions] = useState([]);
   const [feeling, setFeeling] = useState({});
-  const [emotionMemo, setEmotionMemo] = useState(initial);
+  // const [emotionMemo, setEmotionMemo] = useState({});
 
   const getEmotionsByGroup = async (emotionalGroup) => {
     const res = await emotionApi.getEmotionByGroup(emotionalGroup);
@@ -30,10 +30,10 @@ export default function EmotionContextProvider({ children }) {
     setFeeling(res.data.emotion);
   };
 
-  const createEmotionMemo = async (memo) => {
-    const res = await memoApi.createEmotionMemo(memo);
-    console.log(res);
-  };
+  // const createEmotionMemo = async (memo) => {
+  //   const res = await memoApi.createEmotionMemo(memo);
+  //   console.log(res);
+  // };
 
   return (
     <EmotionContext.Provider
@@ -43,9 +43,9 @@ export default function EmotionContextProvider({ children }) {
         getEmotionById,
         feeling,
         setFeeling,
-        setEmotionMemo,
-        emotionMemo,
-        createEmotionMemo,
+        // setEmotionMemo,
+        // emotionMemo,
+        // createEmotionMemo,
       }}
     >
       {children}

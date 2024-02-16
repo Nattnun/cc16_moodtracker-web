@@ -7,10 +7,14 @@ import TextAreaInput from "../../components/TextAreaInput";
 import NavBar2 from "../../layouts/NavBar2";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { MemoContext } from "../../features/emotion/contexts/MemoContext";
+import { AuthContext } from "../../features/auth/contexts/AuthContext";
 
 export default function EmotionMemoPage() {
-  const { feeling, emotionMemo, setEmotionMemo, createEmotionMemo } =
-    useContext(EmotionContext);
+  const { authUser } = useContext(AuthContext);
+  const { feeling } = useContext(EmotionContext);
+  const { emotionMemo, setEmotionMemo, createEmotionMemo, getLatestMemo } =
+    useContext(MemoContext);
 
   const navigate = useNavigate();
 
@@ -33,8 +37,9 @@ export default function EmotionMemoPage() {
     setEmotionMemo({ ...emotionMemo, memo: e.target.value });
   };
 
-  const handleSubmit = () => {
-    createEmotionMemo(emotionMemo);
+  const handleSubmit = async () => {
+    await createEmotionMemo(emotionMemo);
+    await getLatestMemo(authUser.id);
     navigate("/addEmotion");
   };
 

@@ -8,11 +8,13 @@ import NavBar from "../../layouts/NavBar";
 import { EmotionContext } from "../../features/emotion/contexts/EmotionContext";
 import { useEffect } from "react";
 import { MemoContext } from "../../features/emotion/contexts/MemoContext";
+import { useState } from "react";
 
 export default function AddEmotionPage() {
   const { authUser } = useContext(AuthContext);
-  const { emotionMemo, setEmotionMemo } = useContext(EmotionContext);
-  const { getLatestMemo, latestMemo } = useContext(MemoContext);
+  const { getLatestMemo, latestMemo, emotionMemo, setEmotionMemo } =
+    useContext(MemoContext);
+  const [currentColor, setCurrentColor] = useState("");
 
   useEffect(() => {
     setEmotionMemo({ ...emotionMemo, userId: authUser.id });
@@ -21,13 +23,17 @@ export default function AddEmotionPage() {
     // console.log("latestMemo", latestMemo);
   }, []);
 
-  useEffect(() => {}, [latestMemo]);
+  useEffect(() => {
+    console.log("Latest Memo", latestMemo);
+    let color = Color();
+    setCurrentColor(color);
+  }, [latestMemo]);
 
   // console.log(authUser);
   // console.log("outside", latestMemo);
   // console.log("data", latestMemo.data.emotion?.emotionalGroup);
 
-  const Color = () => {
+  function Color() {
     if (latestMemo.data?.emotion.emotionalGroup === "HIGH_ENERGY_UNPLEASANT") {
       return "angryRed";
     }
@@ -40,7 +46,7 @@ export default function AddEmotionPage() {
     if (latestMemo.data?.emotion.emotionalGroup === "LOW_ENERGY_PLEASANT") {
       return "peaceGreen";
     }
-  };
+  }
 
   console.log("color", Color());
 
@@ -51,7 +57,7 @@ export default function AddEmotionPage() {
       <div className=" text-3xl">WHAT DO YOU FEEL</div>
       <div
         className={`w-[288px] h-[288px] rounded-full flex justify-center items-center ${
-          latestMemo ? `bg-${Color()}` : "bg-gray-300"
+          currentColor ? `bg-${currentColor}` : "bg-gray-300"
         }`}
       >
         <div className=" w-[238px] h-[238px] bg-white rounded-full flex justify-center items-center">

@@ -14,7 +14,6 @@ export default function AuthContextProvider({ children }) {
       if (getToken()) {
         try {
           const res = await authApi.fetchUser();
-          console.log(res);
           setAuthUser(res.data.user);
         } catch (err) {
           console.log(err);

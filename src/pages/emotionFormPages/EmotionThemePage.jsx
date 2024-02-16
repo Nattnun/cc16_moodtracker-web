@@ -7,9 +7,11 @@ import { AuthContext } from "../../features/auth/contexts/AuthContext";
 import CheckIcon from "../../components/icons/CheckIcon";
 import { Link } from "react-router-dom";
 import NavBar2 from "../../layouts/NavBar2";
+import { MemoContext } from "../../features/emotion/contexts/MemoContext";
 
 export default function EmotionThemePage() {
-  const { feeling, setEmotionMemo, emotionMemo } = useContext(EmotionContext);
+  const { feeling } = useContext(EmotionContext);
+  const { setEmotionMemo, emotionMemo } = useContext(MemoContext);
   const {
     getThemeByUserId,
     theme,
@@ -62,7 +64,12 @@ export default function EmotionThemePage() {
   };
 
   useEffect(() => {
-    setEmotionMemo({ ...emotionMemo, themeId: "", placeId: "", peopleId: "" });
+    setEmotionMemo({
+      ...emotionMemo,
+      themeId: null,
+      placeId: null,
+      peopleId: null,
+    });
   }, []);
 
   const handleOnClickTheme = (e) => {
