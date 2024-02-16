@@ -32,12 +32,12 @@ export default function BreakDownMemoPage() {
   };
 
   return (
-    <div className="h-[932px] flex flex-col justify-center items-center">
+    <div className="h-[932px] flex flex-col justify-around items-center">
       <h3 className="text-2xl font-semibold text-center">
         Your Overall check-in breakdown
       </h3>
-      <div className="h-[2rem]"></div>
-      <div className="flex flex-wrap mx-6 justify-center items-center">
+      {/* <div className="h-[2rem]"></div> */}
+      <div className="flex flex-wrap mx-12 justify-center items-center">
         {breakDown.map((el) => {
           function Color() {
             if (el.emotionalGroup === "HIGH_ENERGY_UNPLEASANT") {
@@ -61,7 +61,7 @@ export default function BreakDownMemoPage() {
                 height: `${sizeCalc(percent)}px`,
                 width: `${sizeCalc(percent)}px`,
               }}
-              className={`bg-${Color()} rounded-full flex justify-center items-center`}
+              className={`bg-${Color()} rounded-full flex justify-center items-center text-xl font-medium`}
             >
               {/* {el.emotionalGroup} */}
               {`${percent}%`}
@@ -69,6 +69,7 @@ export default function BreakDownMemoPage() {
           );
         })}
       </div>
+      <div className="h-[4rem]"></div>
     </div>
   );
 }
