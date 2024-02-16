@@ -39,7 +39,6 @@ export default function EmotionMemoPage() {
 
   const handleSubmit = async () => {
     await createEmotionMemo(emotionMemo);
-    await getLatestMemo(authUser.id);
     navigate("/addEmotion");
   };
 
