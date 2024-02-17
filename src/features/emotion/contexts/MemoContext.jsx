@@ -10,10 +10,19 @@ export default function MemoContextProvider({ children }) {
   const [allMemo, setAllMemo] = useState([]);
   const [breakDown, setBreakDown] = useState([]);
   const [mostEmotion, setMostEmotion] = useState([]);
+  //time-period
   const [morning, setMorning] = useState([]);
   const [afternoon, setAfternoon] = useState([]);
   const [evenings, setEvenings] = useState([]);
   const [lateNight, setLateNight] = useState([]);
+  //day-of-week
+  const [MON, setMON] = useState([]);
+  const [TUE, setTUE] = useState([]);
+  const [WED, setWED] = useState([]);
+  const [THU, setTHU] = useState([]);
+  const [FRI, setFRI] = useState([]);
+  const [SAT, setSAT] = useState([]);
+  const [SUN, setSUN] = useState([]);
 
   const createEmotionMemo = async (memo) => {
     const res = await memoApi.createEmotionMemo(memo);
@@ -92,8 +101,71 @@ export default function MemoContextProvider({ children }) {
   const getLateNightEmotion = async (userId) => {
     try {
       const lateNightData = await memoApi.getLateNight(userId);
-      // console.log(lateNightData);
       setLateNight(lateNightData.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  //day-of-week
+  const getSundayEmotion = async (userId) => {
+    try {
+      const sunday = await memoApi.getSUN(userId);
+      setSUN(sunday.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getMondayEmotion = async (userId) => {
+    try {
+      const monday = await memoApi.getMON(userId);
+      setMON(monday.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getTuesdayEmotion = async (userId) => {
+    try {
+      const tuesday = await memoApi.getTUE(userId);
+      setTUE(tuesday.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getWednesdayEmotion = async (userId) => {
+    try {
+      const wednesday = await memoApi.getWED(userId);
+      setWED(wednesday.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getThursdayEmotion = async (userId) => {
+    try {
+      const thursday = await memoApi.getTHU(userId);
+      setTHU(thursday.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getFridayEmotion = async (userId) => {
+    try {
+      const friday = await memoApi.getFRI(userId);
+      setFRI(friday.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getSaturdayEmotion = async (userId) => {
+    try {
+      const saturday = await memoApi.getSAT(userId);
+      setSAT(saturday.data);
     } catch (err) {
       console.log(err);
     }
@@ -121,6 +193,20 @@ export default function MemoContextProvider({ children }) {
         evenings,
         getLateNightEmotion,
         lateNight,
+        getSundayEmotion,
+        SUN,
+        getMondayEmotion,
+        MON,
+        getTuesdayEmotion,
+        TUE,
+        getWednesdayEmotion,
+        WED,
+        getThursdayEmotion,
+        THU,
+        getFridayEmotion,
+        FRI,
+        getSaturdayEmotion,
+        SAT,
       }}
     >
       {children}

@@ -20,3 +20,12 @@ export const getAfternoon = (userId) =>
 export const getEvenings = (userId) => axios.get(`/memo/getEvenings/${userId}`);
 export const getLateNight = (userId) =>
   axios.get(`/memo/getLateNight/${userId}`);
+
+//day-of-week
+export const getSUN = (userId) => axios.get(`/memo/getSunday/${userId}`);
+export const getMON = (userId) => axios.get(`/memo/getMonday/${userId}`);
+export const getTUE = (userId) => axios.get(`/memo/getTuesday/${userId}`);
+export const getWED = (userId) => axios.get(`/memo/getWednesday/${userId}`);
+export const getTHU = (userId) => axios.get(`/memo/getThursday/${userId}`);
+export const getFRI = (userId) => axios.get(`/memo/getFriday/${userId}`);
+export const getSAT = (userId) => axios.get(`/memo/getSaturday/${userId}`);
