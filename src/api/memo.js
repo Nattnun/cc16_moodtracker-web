@@ -12,3 +12,11 @@ export const getBreakDownMemo = (userId) =>
 
 export const mostEmotionMemo = (userId) =>
   axios.get(`/memo/getMostEmotion/${userId}`);
+
+//time-period
+export const getMorning = (userId) => axios.get(`/memo/getMorning/${userId}`);
+export const getAfternoon = (userId) =>
+  axios.get(`/memo/getAfternoon/${userId}`);
+export const getEvenings = (userId) => axios.get(`/memo/getEvenings/${userId}`);
+export const getLateNight = (userId) =>
+  axios.get(`/memo/getLateNight/${userId}`);

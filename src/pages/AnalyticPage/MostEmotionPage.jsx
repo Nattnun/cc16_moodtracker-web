@@ -34,7 +34,10 @@ export default function MostEmotionPage() {
           }
 
           return (
-            <div className="w-[430px] grid grid-cols-3 px-8 justify-center items-center">
+            <div
+              key={el.id}
+              className="w-[430px] grid grid-cols-3 px-8 justify-center items-center"
+            >
               <div className="flex justify-center">
                 <div
                   className={`w-[40px] h-[40px] rounded-full bg-${Color()}`}

@@ -10,6 +10,10 @@ export default function MemoContextProvider({ children }) {
   const [allMemo, setAllMemo] = useState([]);
   const [breakDown, setBreakDown] = useState([]);
   const [mostEmotion, setMostEmotion] = useState([]);
+  const [morning, setMorning] = useState([]);
+  const [afternoon, setAfternoon] = useState([]);
+  const [evenings, setEvenings] = useState([]);
+  const [lateNight, setLateNight] = useState([]);
 
   const createEmotionMemo = async (memo) => {
     const res = await memoApi.createEmotionMemo(memo);
@@ -49,8 +53,47 @@ export default function MemoContextProvider({ children }) {
   const getMostEmotion = async (userId) => {
     try {
       const mostMemo = await memoApi.mostEmotionMemo(userId);
-      console.log("mostEmotion", mostMemo.data);
+      // console.log("mostEmotion", mostMemo.data);
       setMostEmotion(mostMemo.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  //time-period
+  const getMorningEmotion = async (userId) => {
+    try {
+      const morningData = await memoApi.getMorning(userId);
+      // console.log("fromContext", morningData.data);
+      setMorning(morningData.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getAfternoonEmotion = async (userId) => {
+    try {
+      const afternoonData = await memoApi.getAfternoon(userId);
+      setAfternoon(afternoonData.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getEveningsEmotion = async (userId) => {
+    try {
+      const eveningsData = await memoApi.getEvenings(userId);
+      setEvenings(eveningsData.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getLateNightEmotion = async (userId) => {
+    try {
+      const lateNightData = await memoApi.getLateNight(userId);
+      // console.log(lateNightData);
+      setLateNight(lateNightData.data);
     } catch (err) {
       console.log(err);
     }
@@ -70,6 +113,14 @@ export default function MemoContextProvider({ children }) {
         breakDown,
         getMostEmotion,
         mostEmotion,
+        getMorningEmotion,
+        morning,
+        getAfternoonEmotion,
+        afternoon,
+        getEveningsEmotion,
+        evenings,
+        getLateNightEmotion,
+        lateNight,
       }}
     >
       {children}
