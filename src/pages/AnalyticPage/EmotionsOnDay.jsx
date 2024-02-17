@@ -31,12 +31,19 @@ export default function EmotionsOnDay() {
         the emotion you feel during the day
       </div>
       <div className="h-[2rem]"></div>
-      <div className="flex gap-6 justify-center items-center">
-        <ChartBar data={morning} word={"Morning"} />
-        <ChartBar data={afternoon} word={"Afternoon"} />
-        <ChartBar data={evenings} word={"Evenings"} />
-        <ChartBar data={lateNight} word={"LateNight"} />
-      </div>
+      {morning.length === 0 &&
+      afternoon.length === 0 &&
+      evenings.length === 0 &&
+      lateNight.length === 0 ? (
+        <div className="text-center">you don't have any Memo yet</div>
+      ) : (
+        <div className="flex gap-6 justify-center items-center">
+          <ChartBar data={morning} word={"Morning"} />
+          <ChartBar data={afternoon} word={"Afternoon"} />
+          <ChartBar data={evenings} word={"Evenings"} />
+          <ChartBar data={lateNight} word={"LateNight"} />
+        </div>
+      )}
     </div>
   );
 }

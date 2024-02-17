@@ -73,7 +73,7 @@ export default function MemoContextProvider({ children }) {
   const getMorningEmotion = async (userId) => {
     try {
       const morningData = await memoApi.getMorning(userId);
-      // console.log("fromContext", morningData.data);
+      console.log("fromContext", morningData.data);
       setMorning(morningData.data);
     } catch (err) {
       console.log(err);

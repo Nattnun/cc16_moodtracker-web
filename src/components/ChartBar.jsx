@@ -19,7 +19,8 @@ export default function ChartBar({ data, word, width = "70px" }) {
   return (
     <div className="flex flex-col justify-center items-center">
       <div
-        className={`w-[${width}] h-[380px] rounded-[1rem] bg-gray-300 overflow-hidden`}
+        style={{ width: `${width}` }}
+        className={`h-[380px] rounded-[1rem] bg-gray-300 overflow-hidden`}
       >
         {data
           ? data.map((el) => {

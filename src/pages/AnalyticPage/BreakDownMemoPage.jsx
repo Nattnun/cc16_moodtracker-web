@@ -35,38 +35,42 @@ export default function BreakDownMemoPage() {
         Your Overall check-in breakdown
       </h3>
       <div className="h-[2rem]"></div>
-      <div className="flex flex-wrap mx-12 justify-center items-center">
-        {breakDown.map((el) => {
-          function Color() {
-            if (el.emotionalGroup === "HIGH_ENERGY_UNPLEASANT") {
-              return "angryRed";
+      {breakDown.length == 0 ? (
+        <div>you don't have any Memo yet</div>
+      ) : (
+        <div className="flex flex-wrap mx-12 justify-center items-center">
+          {breakDown.map((el) => {
+            function Color() {
+              if (el.emotionalGroup === "HIGH_ENERGY_UNPLEASANT") {
+                return "angryRed";
+              }
+              if (el.emotionalGroup === "HIGH_ENERGY_PLEASANT") {
+                return "happyYellow";
+              }
+              if (el.emotionalGroup === "LOW_ENERGY_UNPLEASANT") {
+                return "sadBlue";
+              }
+              if (el.emotionalGroup === "LOW_ENERGY_PLEASANT") {
+                return "peaceGreen";
+              }
             }
-            if (el.emotionalGroup === "HIGH_ENERGY_PLEASANT") {
-              return "happyYellow";
-            }
-            if (el.emotionalGroup === "LOW_ENERGY_UNPLEASANT") {
-              return "sadBlue";
-            }
-            if (el.emotionalGroup === "LOW_ENERGY_PLEASANT") {
-              return "peaceGreen";
-            }
-          }
 
-          const percent = percentage(maxValue(), +el.emotion_count);
-          return (
-            <div
-              key={el.emotionalGroup}
-              style={{
-                height: `${sizeCalc(percent)}px`,
-                width: `${sizeCalc(percent)}px`,
-              }}
-              className={`bg-${Color()} rounded-full flex justify-center items-center text-xl font-medium`}
-            >
-              {`${percent}%`}
-            </div>
-          );
-        })}
-      </div>
+            const percent = percentage(maxValue(), +el.emotion_count);
+            return (
+              <div
+                key={el.emotionalGroup}
+                style={{
+                  height: `${sizeCalc(percent)}px`,
+                  width: `${sizeCalc(percent)}px`,
+                }}
+                className={`bg-${Color()} rounded-full flex justify-center items-center text-xl font-medium`}
+              >
+                {`${percent}%`}
+              </div>
+            );
+          })}
+        </div>
+      )}
       <div className="h-[4rem]"></div>
     </div>
   );

@@ -40,15 +40,25 @@ export default function EmotionOnWeek() {
         the emotion you feel during the week
       </h3>
       <div className="h-[2rem]"></div>
-      <div className="flex gap-4 justify-center items-center">
-        <ChartBar data={SUN} width="40px" word={"SUN"} />
-        <ChartBar data={MON} width="40px" word={"MON"} />
-        <ChartBar data={TUE} width="40px" word={"TUE"} />
-        <ChartBar data={WED} width="40px" word={"WED"} />
-        <ChartBar data={THU} width="40px" word={"THU"} />
-        <ChartBar data={FRI} width="40px" word={"FRI"} />
-        <ChartBar data={SAT} width="40px" word={"SAT"} />
-      </div>
+      {SUN.length == 0 &&
+      MON.length == 0 &&
+      TUE.length == 0 &&
+      WED.length == 0 &&
+      THU.length == 0 &&
+      FRI.length == 0 &&
+      SAT.length == 0 ? (
+        <div className="text-center">you don't have any Memo yet</div>
+      ) : (
+        <div className="flex gap-4 justify-center items-center">
+          <ChartBar data={SUN} width="40px" word={"SUN"} />
+          <ChartBar data={MON} width="40px" word={"MON"} />
+          <ChartBar data={TUE} width="40px" word={"TUE"} />
+          <ChartBar data={WED} width="40px" word={"WED"} />
+          <ChartBar data={THU} width="40px" word={"THU"} />
+          <ChartBar data={FRI} width="40px" word={"FRI"} />
+          <ChartBar data={SAT} width="40px" word={"SAT"} />
+        </div>
+      )}
     </div>
   );
 }
