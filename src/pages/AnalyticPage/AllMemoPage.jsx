@@ -16,7 +16,7 @@ export default function AllMemoPage() {
 
   return (
     <div className="min-h-screen w-[430px] mx-auto">
-      <h3 className="text-2xl font-semibold text-center">
+      <h3 className="text-2xl font-semibold text-center px-8">
         All the emotion you feel
       </h3>
       <div className="h-[2rem]"></div>

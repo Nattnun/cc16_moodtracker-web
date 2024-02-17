@@ -19,21 +19,21 @@ export default function BreakDownMemoPage() {
     return count.reduce((acc, curr) => acc + curr, 0);
   };
 
-  console.log("maxValue", maxValue());
+  // console.log("maxValue", maxValue());
 
   const percentage = (full, have) => {
-    console.log(full, have);
+    // console.log(full, have);
     return Math.round((have / full) * 100);
   };
 
   const sizeCalc = (percent) => {
-    console.log("px", (percent / 100) * 400);
+    // console.log("px", (percent / 100) * 400);
     return (percent / 100) * 500;
   };
 
   return (
     <div className="h-[932px] flex flex-col justify-around items-center">
-      <h3 className="text-2xl font-semibold text-center">
+      <h3 className="text-2xl font-semibold text-center px-8">
         Your Overall check-in breakdown
       </h3>
       {/* <div className="h-[2rem]"></div> */}
@@ -57,13 +57,13 @@ export default function BreakDownMemoPage() {
           const percent = percentage(maxValue(), +el.emotion_count);
           return (
             <div
+              key={el.emotionalGroup}
               style={{
                 height: `${sizeCalc(percent)}px`,
                 width: `${sizeCalc(percent)}px`,
               }}
               className={`bg-${Color()} rounded-full flex justify-center items-center text-xl font-medium`}
             >
-              {/* {el.emotionalGroup} */}
               {`${percent}%`}
             </div>
           );

@@ -24,7 +24,7 @@ export default function AddEmotionPage() {
   }, []);
 
   useEffect(() => {
-    console.log("Latest Memo", latestMemo);
+    // console.log("Latest Memo", latestMemo);
     let color = Color();
     setCurrentColor(color);
   }, [latestMemo]);
@@ -48,7 +48,7 @@ export default function AddEmotionPage() {
     }
   }
 
-  console.log("color", Color());
+  // console.log("color", Color());
 
   return (
     <div className=" h-full  flex flex-col justify-center items-center gap-8">
