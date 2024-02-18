@@ -15,6 +15,7 @@ import HEPEmotionsPage from "../features/emotion/components/HEPEmotionsPage";
 import LEUEmotionsPage from "../features/emotion/components/LEUEmotionsPage";
 import LEPEmotionsPage from "../features/emotion/components/LEPEmotionsPage";
 import AnalyticContainer from "../pages/AnalyticPage/AnalyticContainer";
+import TheEmotionPage from "../pages/emotionFormPages/TheEmotionPage";
 
 const router = createBrowserRouter([
   {
@@ -92,7 +93,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "analytic",
+    path: "/analytic",
     element: (
       <ProtectRoutes>
         <Container />,
@@ -102,6 +103,10 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <AnalyticContainer />,
+      },
+      {
+        path: "theEmotion",
+        element: <TheEmotionPage />,
       },
     ],
   },

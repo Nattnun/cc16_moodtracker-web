@@ -10,11 +10,14 @@ export default function MemoContextProvider({ children }) {
   const [allMemo, setAllMemo] = useState([]);
   const [breakDown, setBreakDown] = useState([]);
   const [mostEmotion, setMostEmotion] = useState([]);
+  const [selectedMemo, setSelectedMemo] = useState({});
+
   //time-period
   const [morning, setMorning] = useState([]);
   const [afternoon, setAfternoon] = useState([]);
   const [evenings, setEvenings] = useState([]);
   const [lateNight, setLateNight] = useState([]);
+
   //day-of-week
   const [MON, setMON] = useState([]);
   const [TUE, setTUE] = useState([]);
@@ -23,6 +26,7 @@ export default function MemoContextProvider({ children }) {
   const [FRI, setFRI] = useState([]);
   const [SAT, setSAT] = useState([]);
   const [SUN, setSUN] = useState([]);
+
   //tags
   const [theme, setTheme] = useState([]);
   const [place, setPlace] = useState([]);
@@ -38,6 +42,16 @@ export default function MemoContextProvider({ children }) {
       const memo = await memoApi.getLatestMemo(userId);
       // console.log("memo", memo);
       setLatestMemo(memo);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getSelectedMemo = async (memoId) => {
+    try {
+      const memo = await memoApi.getSelectedMemo(memoId);
+      console.log("memo", memo.data);
+      setSelectedMemo(memo.data);
     } catch (err) {
       console.log(err);
     }
@@ -180,7 +194,7 @@ export default function MemoContextProvider({ children }) {
     try {
       const themeData = await memoApi.getThemeApi(userId);
       setTheme(themeData.data);
-      console.log("theme", themeData.data);
+      // console.log("theme", themeData.data);
     } catch (err) {
       console.log(err);
     }
@@ -246,6 +260,8 @@ export default function MemoContextProvider({ children }) {
         place,
         getPeople,
         people,
+        getSelectedMemo,
+        selectedMemo,
       }}
     >
       {children}

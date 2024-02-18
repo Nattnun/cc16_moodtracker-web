@@ -4,15 +4,25 @@ import { MemoContext } from "../../features/emotion/contexts/MemoContext";
 import { useEffect } from "react";
 import { AuthContext } from "../../features/auth/contexts/AuthContext";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function AllMemoPage() {
   const { authUser } = useContext(AuthContext);
-  const { getAllMemo, allMemo } = useContext(MemoContext);
+  const { getAllMemo, allMemo, getSelectedMemo, selectedMemo } =
+    useContext(MemoContext);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getAllMemo(authUser.id);
   }, []);
   //   console.log("analytic", allMemo);
+
+  const handleClick = async (e) => {
+    console.log("id", e.target.value);
+    await getSelectedMemo(e.target.value);
+    navigate("/analytic/theEmotion");
+  };
 
   return (
     <div className="min-h-screen w-[430px] mx-auto">
@@ -40,12 +50,14 @@ export default function AllMemoPage() {
               }
             }
             return (
-              <div
+              <button
                 key={el.id}
-                className={`w-[80px] h-[80px] text-xs flex items-center justify-center rounded-full bg-${Color()}`}
+                value={el.id}
+                onClick={handleClick}
+                className={`btn w-[80px] h-[80px] text-xs flex items-center justify-center rounded-full bg-${Color()}`}
               >
                 {el.emotion.name}
-              </div>
+              </button>
             );
           })}
         </div>
