@@ -6,6 +6,8 @@ import MostEmotionPage from "./MostEmotionPage";
 import EmotionsOnDay from "./EmotionsOnDay";
 import EmotionOnWeek from "./EmotionOnWeek";
 import ThemeTagsPage from "./ThemeTagsPage";
+import PlaceTagsPage from "./PlaceTagsPage";
+import PeopleTagsPage from "./PeopleTagsPage";
 
 export default function AnalyticContainer() {
   return (
@@ -17,6 +19,8 @@ export default function AnalyticContainer() {
         <EmotionsOnDay />
         <EmotionOnWeek />
         <ThemeTagsPage />
+        <PlaceTagsPage />
+        <PeopleTagsPage />
       </div>
       <Footer />
     </div>

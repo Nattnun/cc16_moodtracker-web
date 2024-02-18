@@ -5,21 +5,21 @@ import { MemoContext } from "../../features/emotion/contexts/MemoContext";
 import { useEffect } from "react";
 import ChartSandwich from "../../components/ChartSandwich";
 
-export default function ThemeTagsPage() {
+export default function PlaceTagsPage() {
   const { authUser } = useContext(AuthContext);
-  const { getTheme, theme } = useContext(MemoContext);
+  const { getPlace, place } = useContext(MemoContext);
 
   useEffect(() => {
-    getTheme(authUser.id);
+    getPlace(authUser.id);
   }, []);
 
   return (
     <div className="h-[930px] flex flex-col justify-center items-center">
       <div className="text-2xl font-semibold text-center px-8">
-        What you were doing and how you felt
+        Where you were and how you felt
       </div>
       <div className="h-[3rem]"></div>
-      <ChartSandwich data={theme} />
+      <ChartSandwich data={place} />
     </div>
   );
 }

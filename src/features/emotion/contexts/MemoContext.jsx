@@ -25,6 +25,8 @@ export default function MemoContextProvider({ children }) {
   const [SUN, setSUN] = useState([]);
   //tags
   const [theme, setTheme] = useState([]);
+  const [place, setPlace] = useState([]);
+  const [people, setPeople] = useState([]);
 
   const createEmotionMemo = async (memo) => {
     const res = await memoApi.createEmotionMemo(memo);
@@ -184,6 +186,24 @@ export default function MemoContextProvider({ children }) {
     }
   };
 
+  const getPlace = async (userId) => {
+    try {
+      const placeData = await memoApi.getPlaceApi(userId);
+      setPlace(placeData.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getPeople = async (userId) => {
+    try {
+      const peopleData = await memoApi.getPeopleApi(userId);
+      setPeople(peopleData.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <MemoContext.Provider
       value={{
@@ -222,6 +242,10 @@ export default function MemoContextProvider({ children }) {
         SAT,
         getTheme,
         theme,
+        getPlace,
+        place,
+        getPeople,
+        people,
       }}
     >
       {children}

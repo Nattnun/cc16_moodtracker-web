@@ -32,3 +32,5 @@ export const getSAT = (userId) => axios.get(`/memo/getSaturday/${userId}`);
 
 //ThemeTags
 export const getThemeApi = (userId) => axios.get(`memo/getTheme/${userId}`);
+export const getPlaceApi = (userId) => axios.get(`memo/getPlace/${userId}`);
+export const getPeopleApi = (userId) => axios.get(`memo/getPeople/${userId}`);
