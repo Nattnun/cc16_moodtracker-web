@@ -29,3 +29,6 @@ export const getWED = (userId) => axios.get(`/memo/getWednesday/${userId}`);
 export const getTHU = (userId) => axios.get(`/memo/getThursday/${userId}`);
 export const getFRI = (userId) => axios.get(`/memo/getFriday/${userId}`);
 export const getSAT = (userId) => axios.get(`/memo/getSaturday/${userId}`);
+
+//ThemeTags
+export const getThemeApi = (userId) => axios.get(`memo/getTheme/${userId}`);

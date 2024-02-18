@@ -23,6 +23,8 @@ export default function MemoContextProvider({ children }) {
   const [FRI, setFRI] = useState([]);
   const [SAT, setSAT] = useState([]);
   const [SUN, setSUN] = useState([]);
+  //tags
+  const [theme, setTheme] = useState([]);
 
   const createEmotionMemo = async (memo) => {
     const res = await memoApi.createEmotionMemo(memo);
@@ -73,7 +75,7 @@ export default function MemoContextProvider({ children }) {
   const getMorningEmotion = async (userId) => {
     try {
       const morningData = await memoApi.getMorning(userId);
-      console.log("fromContext", morningData.data);
+      // console.log("fromContext", morningData.data);
       setMorning(morningData.data);
     } catch (err) {
       console.log(err);
@@ -171,6 +173,17 @@ export default function MemoContextProvider({ children }) {
     }
   };
 
+  //getTheme
+  const getTheme = async (userId) => {
+    try {
+      const themeData = await memoApi.getThemeApi(userId);
+      setTheme(themeData.data);
+      console.log("theme", themeData.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <MemoContext.Provider
       value={{
@@ -207,6 +220,8 @@ export default function MemoContextProvider({ children }) {
         FRI,
         getSaturdayEmotion,
         SAT,
+        getTheme,
+        theme,
       }}
     >
       {children}
