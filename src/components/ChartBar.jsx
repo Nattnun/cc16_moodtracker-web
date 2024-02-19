@@ -13,7 +13,7 @@ export default function ChartBar({ data, word, width = "70px" }) {
   };
 
   const sizeCalc = (percent) => {
-    return (percent / 100) * 380;
+    return (percent / 100) * 390;
   };
 
   return (

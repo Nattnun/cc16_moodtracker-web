@@ -30,6 +30,12 @@ export default function EmotionThemePage() {
     // console.log("theme", theme);
     // console.log("place", place);
     // console.log("people", people);
+    setEmotionMemo({
+      ...emotionMemo,
+      themeId: null,
+      placeId: null,
+      peopleId: null,
+    });
   }, []);
 
   const textDefault = "text-4xl font-semibold";
@@ -62,15 +68,6 @@ export default function EmotionThemePage() {
       return "/addEmotion/lepEmotions";
     }
   };
-
-  useEffect(() => {
-    setEmotionMemo({
-      ...emotionMemo,
-      themeId: null,
-      placeId: null,
-      peopleId: null,
-    });
-  }, []);
 
   const handleOnClickTheme = (e) => {
     // console.log("theme", e.target.value);

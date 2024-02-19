@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function AllMemoPage() {
   const { authUser } = useContext(AuthContext);
-  const { getAllMemo, allMemo, getSelectedMemo, selectedMemo } =
+  const { getAllMemo, allMemo, getSelectedMemo } =
     useContext(MemoContext);
 
   const navigate = useNavigate();

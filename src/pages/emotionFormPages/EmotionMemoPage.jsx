@@ -1,22 +1,23 @@
 import React from "react";
 import { useContext } from "react";
 import { EmotionContext } from "../../features/emotion/contexts/EmotionContext";
-import { Link } from "react-router-dom";
 import CheckIcon from "../../components/icons/CheckIcon";
 import TextAreaInput from "../../components/TextAreaInput";
 import NavBar2 from "../../layouts/NavBar2";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MemoContext } from "../../features/emotion/contexts/MemoContext";
-import { AuthContext } from "../../features/auth/contexts/AuthContext";
+import { useEffect } from "react";
 
 export default function EmotionMemoPage() {
-  const { authUser } = useContext(AuthContext);
   const { feeling } = useContext(EmotionContext);
   const { emotionMemo, setEmotionMemo, createEmotionMemo, getLatestMemo } =
     useContext(MemoContext);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setEmotionMemo({ ...emotionMemo, memo: "" });
+  }, []);
 
   const Color = () => {
     if (feeling.emotionalGroup === "HIGH_ENERGY_UNPLEASANT") {
