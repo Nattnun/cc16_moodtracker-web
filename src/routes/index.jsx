@@ -16,6 +16,7 @@ import LEUEmotionsPage from "../features/emotion/components/LEUEmotionsPage";
 import LEPEmotionsPage from "../features/emotion/components/LEPEmotionsPage";
 import AnalyticContainer from "../pages/AnalyticPage/AnalyticContainer";
 import TheEmotionPage from "../pages/emotionFormPages/TheEmotionPage";
+import EditThemePage from "../pages/emotionFormPages/EditThemePage";
 
 const router = createBrowserRouter([
   {
@@ -107,6 +108,10 @@ const router = createBrowserRouter([
       {
         path: "theEmotion",
         element: <TheEmotionPage />,
+      },
+      {
+        path: "editTheme",
+        element: <EditThemePage />,
       },
     ],
   },

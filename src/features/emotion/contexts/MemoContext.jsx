@@ -50,7 +50,7 @@ export default function MemoContextProvider({ children }) {
   const getSelectedMemo = async (memoId) => {
     try {
       const memo = await memoApi.getSelectedMemo(memoId);
-      console.log("memo", memo.data);
+      // console.log("memo", memo.data);
       setSelectedMemo(memo.data);
     } catch (err) {
       console.log(err);

@@ -6,6 +6,7 @@ import TagIcon from "../../components/icons/TagIcon";
 import PencilIcon from "../../components/icons/PencilIcon";
 import TrashIcon from "../../components/icons/TrashIcon";
 import NavBar2 from "../../layouts/NavBar2";
+import { Link } from "react-router-dom";
 
 export default function TheEmotionPage() {
   const { selectedMemo } = useContext(MemoContext);
@@ -110,9 +111,11 @@ export default function TheEmotionPage() {
             <div className="text-4xl">{selectedMemo.emotion.name}</div>
           </div>
           <div className="flex gap-4">
-            <div>
-              <TagIcon />
-            </div>
+            <Link to="/analytic/editTheme">
+              <div>
+                <TagIcon />
+              </div>
+            </Link>
             <div>
               <PencilIcon />
             </div>

@@ -9,9 +9,8 @@ import { Link } from "react-router-dom";
 import NavBar2 from "../../layouts/NavBar2";
 import { MemoContext } from "../../features/emotion/contexts/MemoContext";
 
-export default function EmotionThemePage() {
-  const { feeling } = useContext(EmotionContext);
-  const { setEmotionMemo, emotionMemo } = useContext(MemoContext);
+export default function EditThemePage() {
+  const { setEmotionMemo, emotionMemo, selectedMemo } = useContext(MemoContext);
   const {
     getThemeByUserId,
     theme,
@@ -30,57 +29,36 @@ export default function EmotionThemePage() {
     // console.log("theme", theme);
     // console.log("place", place);
     // console.log("people", people);
-    setEmotionMemo({
-      ...emotionMemo,
-      themeId: null,
-      placeId: null,
-      peopleId: null,
-    });
   }, []);
 
   const textDefault = "text-4xl font-semibold";
   const Color = () => {
-    if (feeling.emotionalGroup === "HIGH_ENERGY_UNPLEASANT") {
+    if (selectedMemo.emotion.emotionalGroup === "HIGH_ENERGY_UNPLEASANT") {
       return "angryRed";
     }
-    if (feeling.emotionalGroup === "HIGH_ENERGY_PLEASANT") {
+    if (selectedMemo.emotion.emotionalGroup === "HIGH_ENERGY_PLEASANT") {
       return "happyYellow";
     }
-    if (feeling.emotionalGroup === "LOW_ENERGY_UNPLEASANT") {
+    if (selectedMemo.emotion.emotionalGroup === "LOW_ENERGY_UNPLEASANT") {
       return "sadBlue";
     }
-    if (feeling.emotionalGroup === "LOW_ENERGY_PLEASANT") {
+    if (selectedMemo.emotion.emotionalGroup === "LOW_ENERGY_PLEASANT") {
       return "peaceGreen";
     }
   };
 
   const TextColor = () => {
-    if (feeling.emotionalGroup === "HIGH_ENERGY_UNPLEASANT") {
+    if (selectedMemo.emotion.emotionalGroup === "HIGH_ENERGY_UNPLEASANT") {
       return "#F9404E";
     }
-    if (feeling.emotionalGroup === "HIGH_ENERGY_PLEASANT") {
+    if (selectedMemo.emotion.emotionalGroup === "HIGH_ENERGY_PLEASANT") {
       return "#FFBF2D";
     }
-    if (feeling.emotionalGroup === "LOW_ENERGY_UNPLEASANT") {
+    if (selectedMemo.emotion.emotionalGroup === "LOW_ENERGY_UNPLEASANT") {
       return "#7690FE";
     }
-    if (feeling.emotionalGroup === "LOW_ENERGY_PLEASANT") {
+    if (selectedMemo.emotion.emotionalGroup === "LOW_ENERGY_PLEASANT") {
       return "#46D691";
-    }
-  };
-
-  const Path = () => {
-    if (feeling.emotionalGroup === "HIGH_ENERGY_UNPLEASANT") {
-      return "/addEmotion/heuEmotions";
-    }
-    if (feeling.emotionalGroup === "HIGH_ENERGY_PLEASANT") {
-      return "/addEmotion/hepEmotions";
-    }
-    if (feeling.emotionalGroup === "LOW_ENERGY_UNPLEASANT") {
-      return "/addEmotion/leuEmotions";
-    }
-    if (feeling.emotionalGroup === "LOW_ENERGY_PLEASANT") {
-      return "/addEmotion/lepEmotions";
     }
   };
 
@@ -99,13 +77,13 @@ export default function EmotionThemePage() {
 
   return (
     <>
-      <NavBar2 path={Path()} />
+      <NavBar2 path={"/analytic/theEmotion"} />
       <div className="flex flex-col gap-8 justify-center items-center px-6">
         <div className="text-3xl mx-4 font-medium">
           What were you doing when you felt
           <span style={{ color: TextColor() }} className={`${textDefault}`}>
             {" "}
-            {feeling?.name}
+            {selectedMemo.emotion.name}
           </span>
         </div>
 
