@@ -11,6 +11,7 @@ export default function MemoContextProvider({ children }) {
   const [breakDown, setBreakDown] = useState([]);
   const [mostEmotion, setMostEmotion] = useState([]);
   const [selectedMemo, setSelectedMemo] = useState({});
+  const [updateMemo, setUpdateMemo] = useState({});
 
   //time-period
   const [morning, setMorning] = useState([]);
@@ -50,7 +51,7 @@ export default function MemoContextProvider({ children }) {
   const getSelectedMemo = async (memoId) => {
     try {
       const memo = await memoApi.getSelectedMemo(memoId);
-      // console.log("memo", memo.data);
+      console.log("memo", memo.data);
       setSelectedMemo(memo.data);
     } catch (err) {
       console.log(err);
@@ -218,6 +219,17 @@ export default function MemoContextProvider({ children }) {
     }
   };
 
+  //updateMemo
+
+  const updateMemoById = async (memoId, memoUpdate) => {
+    try {
+      const updateData = await memoApi.updateMemoByMemoId(memoId, memoUpdate);
+      console.log("updateData", updateData);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <MemoContext.Provider
       value={{
@@ -262,6 +274,9 @@ export default function MemoContextProvider({ children }) {
         people,
         getSelectedMemo,
         selectedMemo,
+        updateMemo,
+        setUpdateMemo,
+        updateMemoById,
       }}
     >
       {children}

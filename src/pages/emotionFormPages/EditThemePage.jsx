@@ -8,9 +8,11 @@ import CheckIcon from "../../components/icons/CheckIcon";
 import { Link } from "react-router-dom";
 import NavBar2 from "../../layouts/NavBar2";
 import { MemoContext } from "../../features/emotion/contexts/MemoContext";
+import { useNavigate } from "react-router-dom";
 
 export default function EditThemePage() {
-  const { setEmotionMemo, emotionMemo, selectedMemo } = useContext(MemoContext);
+  const { selectedMemo, updateMemo, setUpdateMemo, updateMemoById } =
+    useContext(MemoContext);
   const {
     getThemeByUserId,
     theme,
@@ -20,6 +22,7 @@ export default function EditThemePage() {
     people,
   } = useContext(TagsContext);
   const { authUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // console.log("authUser", authUser);
@@ -29,6 +32,12 @@ export default function EditThemePage() {
     // console.log("theme", theme);
     // console.log("place", place);
     // console.log("people", people);
+    setUpdateMemo({
+      ...updateMemo,
+      themeId: selectedMemo.themeId,
+      placeId: selectedMemo.placeId,
+      peopleId: selectedMemo.peopleId,
+    });
   }, []);
 
   const textDefault = "text-4xl font-semibold";
@@ -63,16 +72,23 @@ export default function EditThemePage() {
   };
 
   const handleOnClickTheme = (e) => {
-    // console.log("theme", e.target.value);
-    setEmotionMemo({ ...emotionMemo, themeId: +e.target.value });
+    console.log("theme", e.target.value);
+    setUpdateMemo({ ...updateMemo, themeId: +e.target.value });
   };
+
   const handleOnClickPlace = (e) => {
-    // console.log("place", e.target.value);
-    setEmotionMemo({ ...emotionMemo, placeId: +e.target.value });
+    console.log("place", e.target.value);
+    setUpdateMemo({ ...updateMemo, placeId: +e.target.value });
   };
+
   const handleOnClickPeople = (e) => {
-    // console.log("people", e.target.value);
-    setEmotionMemo({ ...emotionMemo, peopleId: +e.target.value });
+    console.log("people", e.target.value);
+    setUpdateMemo({ ...updateMemo, peopleId: +e.target.value });
+  };
+
+  const handleOnSubmit = async () => {
+    await updateMemoById(selectedMemo.id, updateMemo);
+    navigate("/analytic/theEmotion");
   };
 
   return (
@@ -97,7 +113,7 @@ export default function EditThemePage() {
                   value={el.id}
                   onClick={handleOnClickTheme}
                   className={`border px-[1rem] rounded-full ${
-                    emotionMemo.themeId == el.id ? `bg-${Color()}` : null
+                    updateMemo.themeId == el.id ? `bg-${Color()}` : null
                   }`}
                 >
                   {el.name}
@@ -120,7 +136,7 @@ export default function EditThemePage() {
                   value={el.id}
                   onClick={handleOnClickPlace}
                   className={`border px-[1rem] rounded-full ${
-                    emotionMemo.placeId == el.id ? `bg-${Color()}` : null
+                    updateMemo.placeId == el.id ? `bg-${Color()}` : null
                   }`}
                 >
                   {el.name}
@@ -143,7 +159,7 @@ export default function EditThemePage() {
                   value={el.id}
                   onClick={handleOnClickPeople}
                   className={`border px-[1rem] rounded-full ${
-                    emotionMemo.peopleId == el.id ? `bg-${Color()}` : null
+                    updateMemo.peopleId == el.id ? `bg-${Color()}` : null
                   }`}
                 >
                   {el.name}
@@ -156,13 +172,12 @@ export default function EditThemePage() {
           </div>
         </div>
 
-        <Link to="/addEmotion/memo">
-          <button
-            className={`btn w-[52px] h-[52px] flex justify-center items-center bg-${Color()} rounded-full`}
-          >
-            <CheckIcon />
-          </button>
-        </Link>
+        <button
+          onClick={handleOnSubmit}
+          className={`btn w-[52px] h-[52px] flex justify-center items-center bg-${Color()} rounded-full`}
+        >
+          <CheckIcon />
+        </button>
       </div>
     </>
   );

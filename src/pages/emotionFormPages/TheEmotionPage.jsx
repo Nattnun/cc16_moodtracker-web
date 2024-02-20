@@ -9,9 +9,11 @@ import NavBar2 from "../../layouts/NavBar2";
 import { Link } from "react-router-dom";
 
 export default function TheEmotionPage() {
-  const { selectedMemo } = useContext(MemoContext);
+  const { selectedMemo, getSelectedMemo } = useContext(MemoContext);
 
-  console.log("selected", selectedMemo);
+  useEffect(() => {
+    getSelectedMemo(selectedMemo.id);
+  }, []);
 
   const DayConvert = (day) => {
     const beforeFormat = day.slice(0, 9).split("-");
@@ -64,10 +66,6 @@ export default function TheEmotionPage() {
     }
   }
 
-  useEffect(() => {
-    DayConvert(selectedMemo.createdAt);
-  }, []);
-
   return (
     <div className=" h-full w-[430px]  flex flex-col relative justify-center items-center gap-8">
       <NavBar2 path={"/analytic"} />
@@ -116,9 +114,11 @@ export default function TheEmotionPage() {
                 <TagIcon />
               </div>
             </Link>
-            <div>
-              <PencilIcon />
-            </div>
+            <Link to="/analytic/editMemo">
+              <div>
+                <PencilIcon />
+              </div>
+            </Link>
             <div>
               <TrashIcon />
             </div>
