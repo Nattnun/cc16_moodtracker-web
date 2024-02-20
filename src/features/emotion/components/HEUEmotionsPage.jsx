@@ -22,8 +22,8 @@ export default function HEUEmotionsPage() {
 
   const handleClick = (e) => {
     getEmotionById(e.target.value);
-    console.log(e.target.value);
-    console.log("fromEmotions", feeling);
+    // console.log(e.target.value);
+    // console.log("fromEmotions", feeling);
     setEmotionMemo({ ...emotionMemo, emotionId: +e.target.value });
   };
   return (

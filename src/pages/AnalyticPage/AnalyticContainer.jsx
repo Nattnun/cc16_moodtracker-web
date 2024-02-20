@@ -1,4 +1,5 @@
 import React from "react";
+import NavBar from "../../layouts/NavBar";
 import Footer from "../../layouts/Footer";
 import AllMemoPage from "./AllMemoPage";
 import BreakDownMemoPage from "./BreakDownMemoPage";
@@ -12,6 +13,7 @@ import PeopleTagsPage from "./PeopleTagsPage";
 export default function AnalyticContainer() {
   return (
     <div>
+      <NavBar />
       <div className="h-screen">
         <BreakDownMemoPage />
         <AllMemoPage />

@@ -2,8 +2,8 @@ import React from "react";
 
 export default function TagsItemList({
   name,
-  themeData,
-  themeId,
+  tagsData,
+  tagsId,
   color,
   onClick,
   onAdd,
@@ -13,15 +13,17 @@ export default function TagsItemList({
     <div>
       <h3 className="text-xl font-medium">{name}</h3>
       <div className="flex flex-wrap gap-1">
-        {themeData.map((el) => {
+        {tagsData?.map((el) => {
+          console.log(el.id == tagsId);
           return (
             <button
               key={el.id}
               value={el.id}
               onClick={onClick}
-              className={`border px-[1rem] rounded-full ${
-                { themeId } == el.id ? `bg-${color}` : null
-              }`}
+              style={{
+                background: `${tagsId == el.id ? color : ""}`,
+              }}
+              className={`border px-[1rem] rounded-full`}
             >
               {el.name}
             </button>
@@ -29,9 +31,9 @@ export default function TagsItemList({
         })}
         <button
           value={null}
-          className={`border px-[1rem] rounded-full ${
-            !{ themeId } ? `bg-${color}` : null
-          }`}
+          onClick={onClick}
+          style={{ background: `${!tagsId ? color : ""}` }}
+          className={`border px-[1rem] rounded-full`}
         >
           none
         </button>

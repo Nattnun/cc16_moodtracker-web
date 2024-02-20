@@ -8,6 +8,8 @@ import CheckIcon from "../../components/icons/CheckIcon";
 import { Link } from "react-router-dom";
 import NavBar2 from "../../layouts/NavBar2";
 import { MemoContext } from "../../features/emotion/contexts/MemoContext";
+import TagsItemList from "../../components/TagsItemList";
+import { useState } from "react";
 
 export default function EmotionThemePage() {
   const { feeling } = useContext(EmotionContext);
@@ -21,6 +23,7 @@ export default function EmotionThemePage() {
     people,
   } = useContext(TagsContext);
   const { authUser } = useContext(AuthContext);
+  const [currentColor, setCurrentColor] = useState("");
 
   useEffect(() => {
     // console.log("authUser", authUser);
@@ -36,6 +39,7 @@ export default function EmotionThemePage() {
       placeId: null,
       peopleId: null,
     });
+    setCurrentColor(Color());
   }, []);
 
   const textDefault = "text-4xl font-semibold";
@@ -91,7 +95,7 @@ export default function EmotionThemePage() {
   };
 
   const handleOnClickTheme = (e) => {
-    // console.log("theme", e.target.value);
+    console.log("theme", e.target.value);
     setEmotionMemo({ ...emotionMemo, themeId: IfZero(+e.target.value) });
   };
   const handleOnClickPlace = (e) => {

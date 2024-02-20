@@ -26,7 +26,7 @@ export default function EmotionContextProvider({ children }) {
 
   const getEmotionById = async (emoId) => {
     const res = await emotionApi.getEmotionById(emoId);
-    console.log("res", res);
+    // console.log("res", res);
     setFeeling(res.data.emotion);
   };
 

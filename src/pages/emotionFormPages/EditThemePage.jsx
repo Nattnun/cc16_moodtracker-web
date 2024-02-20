@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import NavBar2 from "../../layouts/NavBar2";
 import { MemoContext } from "../../features/emotion/contexts/MemoContext";
 import { useNavigate } from "react-router-dom";
+import TagsItemList from "../../components/TagsItemList";
+import { useState } from "react";
 
 export default function EditThemePage() {
   const { selectedMemo, updateMemo, setUpdateMemo, updateMemoById } =
@@ -22,6 +24,7 @@ export default function EditThemePage() {
     people,
   } = useContext(TagsContext);
   const { authUser } = useContext(AuthContext);
+  const [currentColor, setCurrentColor] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,6 +41,7 @@ export default function EditThemePage() {
       placeId: selectedMemo.placeId,
       peopleId: selectedMemo.peopleId,
     });
+    setCurrentColor(TextColor());
   }, []);
 
   const textDefault = "text-4xl font-semibold";
@@ -113,101 +117,27 @@ export default function EditThemePage() {
           </span>
         </div>
 
-        <div>
-          <h3 className="text-xl font-medium">Theme</h3>
-          <div className="flex flex-wrap gap-1">
-            {theme.themeTags?.map((el) => {
-              return (
-                <button
-                  key={el.id}
-                  value={+el.id}
-                  onClick={handleOnClickTheme}
-                  className={`border px-[1rem] rounded-full ${
-                    updateMemo.themeId == el.id ? `bg-${Color()}` : null
-                  }`}
-                >
-                  {el.name}
-                </button>
-              );
-            })}
-            <button
-              value={null}
-              onClick={handleOnClickTheme}
-              className={`border px-[1rem] rounded-full ${
-                !updateMemo.themeId ? `bg-${Color()}` : null
-              }`}
-            >
-              none
-            </button>
-            <button className="border border-black px-[1rem] rounded-full">
-              Add+
-            </button>
-          </div>
-        </div>
-
-        <div>
-          <h3 className="text-xl font-medium">Place</h3>
-          <div className="flex flex-wrap gap-1">
-            {place.placeTags?.map((el) => {
-              return (
-                <button
-                  key={el.id}
-                  value={+el.id}
-                  onClick={handleOnClickPlace}
-                  className={`border px-[1rem] rounded-full ${
-                    updateMemo.placeId == el.id ? `bg-${Color()}` : null
-                  }`}
-                >
-                  {el.name}
-                </button>
-              );
-            })}
-            <button
-              value={null}
-              onClick={handleOnClickPlace}
-              className={`border px-[1rem] rounded-full ${
-                !updateMemo.placeId ? `bg-${Color()}` : null
-              }`}
-            >
-              none
-            </button>
-            <button className="border border-black px-[1rem] rounded-full">
-              Add+
-            </button>
-          </div>
-        </div>
-
-        <div>
-          <h3 className="text-xl font-medium">People</h3>
-          <div className="flex flex-wrap gap-1">
-            {people.peopleTags?.map((el) => {
-              return (
-                <button
-                  key={el.id}
-                  value={+el.id}
-                  onClick={handleOnClickPeople}
-                  className={`border px-[1rem] rounded-full ${
-                    updateMemo.peopleId == el.id ? `bg-${Color()}` : null
-                  }`}
-                >
-                  {el.name}
-                </button>
-              );
-            })}
-            <button
-              value={null}
-              onClick={handleOnClickPeople}
-              className={`border px-[1rem] rounded-full ${
-                !updateMemo.peopleId ? `bg-${Color()}` : null
-              }`}
-            >
-              none
-            </button>
-            <button className="border border-black px-[1rem] rounded-full">
-              Add+
-            </button>
-          </div>
-        </div>
+        <TagsItemList
+          name={"Theme"}
+          tagsData={theme.themeTags}
+          tagsId={updateMemo.themeId}
+          color={currentColor}
+          onClick={handleOnClickTheme}
+        />
+        <TagsItemList
+          name={"Place"}
+          tagsData={place.placeTags}
+          tagsId={updateMemo.placeId}
+          color={currentColor}
+          onClick={handleOnClickPlace}
+        />
+        <TagsItemList
+          name={"People"}
+          tagsData={people.peopleTags}
+          tagsId={updateMemo.peopleId}
+          color={currentColor}
+          onClick={handleOnClickPlace}
+        />
 
         <button
           onClick={handleOnSubmit}
