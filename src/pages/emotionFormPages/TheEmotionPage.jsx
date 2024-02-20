@@ -7,9 +7,15 @@ import PencilIcon from "../../components/icons/PencilIcon";
 import TrashIcon from "../../components/icons/TrashIcon";
 import NavBar2 from "../../layouts/NavBar2";
 import { Link } from "react-router-dom";
+import Modal from "../../components/Modal";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function TheEmotionPage() {
-  const { selectedMemo, getSelectedMemo } = useContext(MemoContext);
+  const { selectedMemo, getSelectedMemo, deleteMemoById } =
+    useContext(MemoContext);
+  const [openModal, setOpenModal] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getSelectedMemo(selectedMemo.id);
@@ -66,6 +72,11 @@ export default function TheEmotionPage() {
     }
   }
 
+  const onHandleDelete = async () => {
+    await deleteMemoById(+selectedMemo.id);
+    navigate("/analytic");
+  };
+
   return (
     <div className=" h-full w-[430px]  flex flex-col relative justify-center items-center gap-8">
       <NavBar2 path={"/analytic"} />
@@ -119,9 +130,24 @@ export default function TheEmotionPage() {
                 <PencilIcon />
               </div>
             </Link>
-            <div>
+            <div onClick={() => setOpenModal(!openModal)}>
               <TrashIcon />
             </div>
+            {openModal ? (
+              <Modal
+                onClose={() => setOpenModal(!openModal)}
+                title={"Are you sure you want to delete"}
+              >
+                <div className=" flex justify-center items-center">
+                  <div
+                    onClick={onHandleDelete}
+                    className="btn w-[275px] bg-angryRed tracking-wider text-white my-8"
+                  >
+                    DELETE
+                  </div>
+                </div>
+              </Modal>
+            ) : null}
           </div>
         </div>
       </div>

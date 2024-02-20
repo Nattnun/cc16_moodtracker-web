@@ -1,4 +1,5 @@
 import React from "react";
+import XIcon from "./icons/XIcon";
 
 export default function Modal({ title, children, onClose, width }) {
   return (
@@ -10,12 +11,16 @@ export default function Modal({ title, children, onClose, width }) {
             className="bg-white rounded-lg shadow-[0_0_15px_rgb(0,0,0,0.2)] max-h-[calc(100vh-10rem)] flex flex-col"
             style={{ width: `${width}rem` }}
           >
-            <div className="border-b flex justify-between items-center p-4">
-              <div className="text-2xl invisible">&#10005;</div>
-              <div className="text-3xl font-semibold">{title} </div>
-              <button onClick={onClose} className="text-2xl">
-                &#10005;
+            <div className="flex flex-col relative justify-between items-center p-4">
+              <button
+                onClick={onClose}
+                className="absolute right-4 items-end text-2xl"
+              >
+                <XIcon />
               </button>
+              <div className="text-3xl font-semibold text-center pt-8">
+                {title}{" "}
+              </div>
             </div>
             <div className=" overflow-auto">{children}</div>
           </div>

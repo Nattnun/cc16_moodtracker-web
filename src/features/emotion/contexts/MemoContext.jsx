@@ -230,6 +230,16 @@ export default function MemoContextProvider({ children }) {
     }
   };
 
+  //deleteMemo
+
+  const deleteMemoById = async (memoId) => {
+    try {
+      const deleteData = await memoApi.deleteMemoByMemoId(memoId);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <MemoContext.Provider
       value={{
@@ -277,6 +287,7 @@ export default function MemoContextProvider({ children }) {
         updateMemo,
         setUpdateMemo,
         updateMemoById,
+        deleteMemoById,
       }}
     >
       {children}

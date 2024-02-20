@@ -5,6 +5,9 @@ export const createEmotionMemo = (memo) => axios.post("/memo/createMemo", memo);
 export const updateMemoByMemoId = (memoId, updateMemo) =>
   axios.patch(`/memo/updateTags/${memoId}`, updateMemo);
 
+export const deleteMemoByMemoId = (memoId) =>
+  axios.delete(`/memo/deleteMemo/${memoId}`);
+
 export const getLatestMemo = (userId) =>
   axios.get(`/memo/getLatestMemo/${userId}`);
 
