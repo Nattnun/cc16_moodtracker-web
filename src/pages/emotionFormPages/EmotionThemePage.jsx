@@ -39,7 +39,7 @@ export default function EmotionThemePage() {
       placeId: null,
       peopleId: null,
     });
-    setCurrentColor(Color());
+    setCurrentColor(TextColor());
   }, []);
 
   const textDefault = "text-4xl font-semibold";
@@ -119,98 +119,29 @@ export default function EmotionThemePage() {
           </span>
         </div>
 
-        <div>
-          <h3 className="text-xl font-medium">Theme</h3>
-          <div className="flex flex-wrap gap-1">
-            {theme.themeTags?.map((el) => {
-              return (
-                <button
-                  key={el.id}
-                  value={el.id}
-                  onClick={handleOnClickTheme}
-                  className={`border px-[1rem] rounded-full ${
-                    emotionMemo.themeId == el.id ? `bg-${Color()}` : null
-                  }`}
-                >
-                  {el.name}
-                </button>
-              );
-            })}
-            <button
-              value={null}
-              className={`border px-[1rem] rounded-full ${
-                !emotionMemo.themeId ? `bg-${Color()}` : null
-              }`}
-            >
-              none
-            </button>
-            <button className="border border-black px-[1rem] rounded-full">
-              Add+
-            </button>
-          </div>
-        </div>
+        <TagsItemList
+          name={"Theme"}
+          tagsData={theme.themeTags}
+          tagsId={emotionMemo.themeId}
+          color={currentColor}
+          onClick={handleOnClickTheme}
+        />
 
-        <div>
-          <h3 className="text-xl font-medium">Place</h3>
-          <div className="flex flex-wrap gap-1">
-            {place.placeTags?.map((el) => {
-              return (
-                <button
-                  key={el.id}
-                  value={el.id}
-                  onClick={handleOnClickPlace}
-                  className={`border px-[1rem] rounded-full ${
-                    emotionMemo.placeId == el.id ? `bg-${Color()}` : null
-                  }`}
-                >
-                  {el.name}
-                </button>
-              );
-            })}
-            <button
-              value={null}
-              className={`border px-[1rem] rounded-full ${
-                !emotionMemo.placeId ? `bg-${Color()}` : null
-              }`}
-            >
-              none
-            </button>
-            <button className="border border-black px-[1rem] rounded-full">
-              Add+
-            </button>
-          </div>
-        </div>
+        <TagsItemList
+          name={"Place"}
+          tagsData={place.placeTags}
+          tagsId={emotionMemo.placeId}
+          color={currentColor}
+          onClick={handleOnClickPlace}
+        />
 
-        <div>
-          <h3 className="text-xl font-medium">People</h3>
-          <div className="flex flex-wrap gap-1">
-            {people.peopleTags?.map((el) => {
-              return (
-                <button
-                  key={el.id}
-                  value={el.id}
-                  onClick={handleOnClickPeople}
-                  className={`border px-[1rem] rounded-full ${
-                    emotionMemo.peopleId == el.id ? `bg-${Color()}` : null
-                  }`}
-                >
-                  {el.name}
-                </button>
-              );
-            })}
-            <button
-              value={null}
-              className={`border px-[1rem] rounded-full ${
-                !emotionMemo.peopleId ? `bg-${Color()}` : null
-              }`}
-            >
-              none
-            </button>
-            <button className="border border-black px-[1rem] rounded-full">
-              Add+
-            </button>
-          </div>
-        </div>
+        <TagsItemList
+          name={"People"}
+          tagsData={people.peopleTags}
+          tagsId={emotionMemo.peopleId}
+          color={currentColor}
+          onClick={handleOnClickPeople}
+        />
 
         <Link to="/addEmotion/memo">
           <button

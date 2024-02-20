@@ -136,7 +136,7 @@ export default function EditThemePage() {
           tagsData={people.peopleTags}
           tagsId={updateMemo.peopleId}
           color={currentColor}
-          onClick={handleOnClickPlace}
+          onClick={handleOnClickPeople}
         />
 
         <button
