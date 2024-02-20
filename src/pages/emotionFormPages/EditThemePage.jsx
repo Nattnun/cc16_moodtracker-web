@@ -116,7 +116,7 @@ export default function EditThemePage() {
         <div>
           <h3 className="text-xl font-medium">Theme</h3>
           <div className="flex flex-wrap gap-1">
-            {theme.data?.themeTags.map((el) => {
+            {theme.themeTags?.map((el) => {
               return (
                 <button
                   key={el.id}
@@ -148,7 +148,7 @@ export default function EditThemePage() {
         <div>
           <h3 className="text-xl font-medium">Place</h3>
           <div className="flex flex-wrap gap-1">
-            {place.data?.placeTags.map((el) => {
+            {place.placeTags?.map((el) => {
               return (
                 <button
                   key={el.id}
@@ -180,7 +180,7 @@ export default function EditThemePage() {
         <div>
           <h3 className="text-xl font-medium">People</h3>
           <div className="flex flex-wrap gap-1">
-            {people.data?.peopleTags.map((el) => {
+            {people.peopleTags?.map((el) => {
               return (
                 <button
                   key={el.id}

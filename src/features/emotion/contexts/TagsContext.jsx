@@ -12,17 +12,17 @@ export default function TagsContextProvider({ children }) {
 
   const getThemeByUserId = async (userId) => {
     const res = await tagsApi.getThemeTagsByUserId(userId);
-    setTheme(res);
+    setTheme(res.data);
   };
 
   const getPlaceByUserId = async (userId) => {
     const res = await tagsApi.getPlaceTagsByUserId(userId);
-    setPlace(res);
+    setPlace(res.data);
   };
 
   const getPeopleByUserId = async (userId) => {
     const res = await tagsApi.getPeopleTagsByUserId(userId);
-    setPeople(res);
+    setPeople(res.data);
   };
 
   return (
