@@ -71,22 +71,32 @@ export default function EditThemePage() {
     }
   };
 
+  const IfZero = (input) => {
+    if (+input === 0) {
+      return null;
+    } else return input;
+  };
+
   const handleOnClickTheme = (e) => {
     console.log("theme", e.target.value);
-    setUpdateMemo({ ...updateMemo, themeId: +e.target.value });
+    setUpdateMemo({
+      ...updateMemo,
+      themeId: IfZero(+e.target.value),
+    });
   };
 
   const handleOnClickPlace = (e) => {
     console.log("place", e.target.value);
-    setUpdateMemo({ ...updateMemo, placeId: +e.target.value });
+    setUpdateMemo({ ...updateMemo, placeId: IfZero(+e.target.value) });
   };
 
   const handleOnClickPeople = (e) => {
     console.log("people", e.target.value);
-    setUpdateMemo({ ...updateMemo, peopleId: +e.target.value });
+    setUpdateMemo({ ...updateMemo, peopleId: IfZero(+e.target.value) });
   };
 
   const handleOnSubmit = async () => {
+    console.log("updateMemo", updateMemo);
     await updateMemoById(selectedMemo.id, updateMemo);
     navigate("/analytic/theEmotion");
   };
@@ -110,7 +120,7 @@ export default function EditThemePage() {
               return (
                 <button
                   key={el.id}
-                  value={el.id}
+                  value={+el.id}
                   onClick={handleOnClickTheme}
                   className={`border px-[1rem] rounded-full ${
                     updateMemo.themeId == el.id ? `bg-${Color()}` : null
@@ -120,6 +130,15 @@ export default function EditThemePage() {
                 </button>
               );
             })}
+            <button
+              value={null}
+              onClick={handleOnClickTheme}
+              className={`border px-[1rem] rounded-full ${
+                !updateMemo.themeId ? `bg-${Color()}` : null
+              }`}
+            >
+              none
+            </button>
             <button className="border border-black px-[1rem] rounded-full">
               Add+
             </button>
@@ -133,7 +152,7 @@ export default function EditThemePage() {
               return (
                 <button
                   key={el.id}
-                  value={el.id}
+                  value={+el.id}
                   onClick={handleOnClickPlace}
                   className={`border px-[1rem] rounded-full ${
                     updateMemo.placeId == el.id ? `bg-${Color()}` : null
@@ -143,6 +162,15 @@ export default function EditThemePage() {
                 </button>
               );
             })}
+            <button
+              value={null}
+              onClick={handleOnClickPlace}
+              className={`border px-[1rem] rounded-full ${
+                !updateMemo.placeId ? `bg-${Color()}` : null
+              }`}
+            >
+              none
+            </button>
             <button className="border border-black px-[1rem] rounded-full">
               Add+
             </button>
@@ -156,7 +184,7 @@ export default function EditThemePage() {
               return (
                 <button
                   key={el.id}
-                  value={el.id}
+                  value={+el.id}
                   onClick={handleOnClickPeople}
                   className={`border px-[1rem] rounded-full ${
                     updateMemo.peopleId == el.id ? `bg-${Color()}` : null
@@ -166,6 +194,15 @@ export default function EditThemePage() {
                 </button>
               );
             })}
+            <button
+              value={null}
+              onClick={handleOnClickPeople}
+              className={`border px-[1rem] rounded-full ${
+                !updateMemo.peopleId ? `bg-${Color()}` : null
+              }`}
+            >
+              none
+            </button>
             <button className="border border-black px-[1rem] rounded-full">
               Add+
             </button>

@@ -84,17 +84,23 @@ export default function EmotionThemePage() {
     }
   };
 
+  const IfZero = (input) => {
+    if (+input === 0) {
+      return null;
+    } else return input;
+  };
+
   const handleOnClickTheme = (e) => {
     // console.log("theme", e.target.value);
-    setEmotionMemo({ ...emotionMemo, themeId: +e.target.value });
+    setEmotionMemo({ ...emotionMemo, themeId: IfZero(+e.target.value) });
   };
   const handleOnClickPlace = (e) => {
     // console.log("place", e.target.value);
-    setEmotionMemo({ ...emotionMemo, placeId: +e.target.value });
+    setEmotionMemo({ ...emotionMemo, placeId: IfZero(+e.target.value) });
   };
   const handleOnClickPeople = (e) => {
     // console.log("people", e.target.value);
-    setEmotionMemo({ ...emotionMemo, peopleId: +e.target.value });
+    setEmotionMemo({ ...emotionMemo, peopleId: IfZero(+e.target.value) });
   };
 
   return (
@@ -126,6 +132,14 @@ export default function EmotionThemePage() {
                 </button>
               );
             })}
+            <button
+              value={null}
+              className={`border px-[1rem] rounded-full ${
+                !emotionMemo.themeId ? `bg-${Color()}` : null
+              }`}
+            >
+              none
+            </button>
             <button className="border border-black px-[1rem] rounded-full">
               Add+
             </button>
@@ -149,6 +163,14 @@ export default function EmotionThemePage() {
                 </button>
               );
             })}
+            <button
+              value={null}
+              className={`border px-[1rem] rounded-full ${
+                !emotionMemo.placeId ? `bg-${Color()}` : null
+              }`}
+            >
+              none
+            </button>
             <button className="border border-black px-[1rem] rounded-full">
               Add+
             </button>
@@ -172,6 +194,14 @@ export default function EmotionThemePage() {
                 </button>
               );
             })}
+            <button
+              value={null}
+              className={`border px-[1rem] rounded-full ${
+                !emotionMemo.peopleId ? `bg-${Color()}` : null
+              }`}
+            >
+              none
+            </button>
             <button className="border border-black px-[1rem] rounded-full">
               Add+
             </button>
