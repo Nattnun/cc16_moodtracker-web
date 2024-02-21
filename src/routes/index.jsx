@@ -24,7 +24,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <RedirectIfAuth>
-        <LandingPage />,
+        <LandingPage />
       </RedirectIfAuth>
     ),
   },
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
     path: "/login",
     element: (
       <RedirectIfAuth>
-        <LoginPage />,
+        <LoginPage />
       </RedirectIfAuth>
     ),
   },
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
     path: "/register",
     element: (
       <RedirectIfAuth>
-        <RegisterPage />,
+        <RegisterPage />
       </RedirectIfAuth>
     ),
   },
@@ -48,7 +48,7 @@ const router = createBrowserRouter([
     path: "/profile",
     element: (
       <ProtectRoutes>
-        <ProfilePage />,
+        <ProfilePage />
       </ProtectRoutes>
     ),
   },
@@ -56,7 +56,7 @@ const router = createBrowserRouter([
     path: "/addEmotion",
     element: (
       <ProtectRoutes>
-        <Container />,
+        <Container />
       </ProtectRoutes>
     ),
     children: [
@@ -98,7 +98,7 @@ const router = createBrowserRouter([
     path: "/analytic",
     element: (
       <ProtectRoutes>
-        <Container />,
+        <Container />
       </ProtectRoutes>
     ),
     children: [
