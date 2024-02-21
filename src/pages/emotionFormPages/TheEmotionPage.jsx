@@ -139,12 +139,12 @@ export default function TheEmotionPage() {
                 title={"Are you sure you want to delete"}
               >
                 <div className=" flex justify-center items-center">
-                  <div
+                  <button
                     onClick={onHandleDelete}
                     className="btn w-[275px] bg-angryRed tracking-wider text-white my-8"
                   >
                     DELETE
-                  </div>
+                  </button>
                 </div>
               </Modal>
             ) : null}

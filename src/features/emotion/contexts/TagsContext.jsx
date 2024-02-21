@@ -25,6 +25,34 @@ export default function TagsContextProvider({ children }) {
     setPeople(res.data);
   };
 
+  //create
+  const createThemeTagByUserId = async (userId, newTagData) => {
+    try {
+      const res = await tagsApi.createThemeTag(userId, newTagData);
+      console.log("fromTagContext", res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const createPlaceTagByUserId = async (userId, newTagData) => {
+    try {
+      const res = await tagsApi.createPlaceTag(userId, newTagData);
+      console.log("fromTagContext", res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const createPeopleTagByUserId = async (userId, newTagData) => {
+    try {
+      const res = await tagsApi.createPeopleTag(userId, newTagData);
+      console.log("fromTagContext", res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <TagsContext.Provider
       value={{
@@ -34,6 +62,9 @@ export default function TagsContextProvider({ children }) {
         place,
         getPeopleByUserId,
         people,
+        createThemeTagByUserId,
+        createPlaceTagByUserId,
+        createPeopleTagByUserId,
       }}
     >
       {children}

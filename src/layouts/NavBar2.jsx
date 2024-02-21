@@ -12,7 +12,7 @@ export default function NavBar2({ path, onClick }) {
   const { logout } = useContext(AuthContext);
   return (
     <>
-      <div className="relative z-50">
+      <div className="relative ">
         <div className="fixed top-0 left-0 right-0 w-[430px] mx-auto">
           <Link to={path}>
             <div onClick={onClick} className="absolute top-6 left-6">

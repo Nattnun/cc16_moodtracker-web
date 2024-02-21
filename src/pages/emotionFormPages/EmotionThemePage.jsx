@@ -21,9 +21,14 @@ export default function EmotionThemePage() {
     place,
     getPeopleByUserId,
     people,
+    createThemeTagByUserId,
+    createPlaceTagByUserId,
+    createPeopleTagByUserId,
   } = useContext(TagsContext);
   const { authUser } = useContext(AuthContext);
   const [currentColor, setCurrentColor] = useState("");
+  const [eventToggle, setEventToggle] = useState(false);
+  const [selectName, setSelectName] = useState({});
 
   useEffect(() => {
     // console.log("authUser", authUser);
@@ -40,7 +45,7 @@ export default function EmotionThemePage() {
       peopleId: null,
     });
     setCurrentColor(TextColor());
-  }, []);
+  }, [eventToggle]);
 
   const textDefault = "text-4xl font-semibold";
   const Color = () => {
@@ -95,16 +100,34 @@ export default function EmotionThemePage() {
   };
 
   const handleOnClickTheme = (e) => {
-    console.log("theme", e.target.value);
+    // console.log("theme", e.target.value);
+    setSelectName({ ...selectName, name: e.target.name });
     setEmotionMemo({ ...emotionMemo, themeId: IfZero(+e.target.value) });
   };
   const handleOnClickPlace = (e) => {
     // console.log("place", e.target.value);
+    setSelectName({ ...selectName, name: e.target.name });
     setEmotionMemo({ ...emotionMemo, placeId: IfZero(+e.target.value) });
   };
   const handleOnClickPeople = (e) => {
     // console.log("people", e.target.value);
+    setSelectName({ ...selectName, name: e.target.name });
     setEmotionMemo({ ...emotionMemo, peopleId: IfZero(+e.target.value) });
+  };
+
+  const onAddTheme = async (value) => {
+    await createThemeTagByUserId(authUser.id, value);
+    setEventToggle(!eventToggle);
+  };
+
+  const onAddPlace = async (value) => {
+    await createPlaceTagByUserId(authUser.id, value);
+    setEventToggle(!eventToggle);
+  };
+
+  const onAddPeople = async (value) => {
+    await createPeopleTagByUserId(authUser.id, value);
+    setEventToggle(!eventToggle);
   };
 
   return (
@@ -119,29 +142,39 @@ export default function EmotionThemePage() {
           </span>
         </div>
 
-        <TagsItemList
-          name={"Theme"}
-          tagsData={theme.themeTags}
-          tagsId={emotionMemo.themeId}
-          color={currentColor}
-          onClick={handleOnClickTheme}
-        />
-
-        <TagsItemList
-          name={"Place"}
-          tagsData={place.placeTags}
-          tagsId={emotionMemo.placeId}
-          color={currentColor}
-          onClick={handleOnClickPlace}
-        />
-
-        <TagsItemList
-          name={"People"}
-          tagsData={people.peopleTags}
-          tagsId={emotionMemo.peopleId}
-          color={currentColor}
-          onClick={handleOnClickPeople}
-        />
+        <div className="z-0">
+          <TagsItemList
+            name={"Theme"}
+            tagsData={theme.themeTags}
+            tagsId={emotionMemo.themeId}
+            color={currentColor}
+            onClick={handleOnClickTheme}
+            onAdd={onAddTheme}
+            selectName={selectName.name}
+          />
+        </div>
+        <div className="z-0">
+          <TagsItemList
+            name={"Place"}
+            tagsData={place.placeTags}
+            tagsId={emotionMemo.placeId}
+            color={currentColor}
+            onClick={handleOnClickPlace}
+            onAdd={onAddPlace}
+            selectName={selectName.name}
+          />
+        </div>
+        <div className="z-0">
+          <TagsItemList
+            name={"People"}
+            tagsData={people.peopleTags}
+            tagsId={emotionMemo.peopleId}
+            color={currentColor}
+            onClick={handleOnClickPeople}
+            onAdd={onAddPeople}
+            selectName={selectName.name}
+          />
+        </div>
 
         <Link to="/addEmotion/memo">
           <button

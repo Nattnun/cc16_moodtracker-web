@@ -22,9 +22,14 @@ export default function EditThemePage() {
     place,
     getPeopleByUserId,
     people,
+    createThemeTagByUserId,
+    createPlaceTagByUserId,
+    createPeopleTagByUserId,
   } = useContext(TagsContext);
   const { authUser } = useContext(AuthContext);
   const [currentColor, setCurrentColor] = useState("");
+  const [eventToggle, setEventToggle] = useState(false);
+  const [selectName, setSelectName] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,7 +47,7 @@ export default function EditThemePage() {
       peopleId: selectedMemo.peopleId,
     });
     setCurrentColor(TextColor());
-  }, []);
+  }, [eventToggle]);
 
   const textDefault = "text-4xl font-semibold";
   const Color = () => {
@@ -82,7 +87,8 @@ export default function EditThemePage() {
   };
 
   const handleOnClickTheme = (e) => {
-    console.log("theme", e.target.value);
+    console.log("theme", e.target.value, e.target.name);
+    setSelectName({ ...selectName, name: e.target.name });
     setUpdateMemo({
       ...updateMemo,
       themeId: IfZero(+e.target.value),
@@ -91,11 +97,13 @@ export default function EditThemePage() {
 
   const handleOnClickPlace = (e) => {
     console.log("place", e.target.value);
+    setSelectName({ ...selectName, name: e.target.name });
     setUpdateMemo({ ...updateMemo, placeId: IfZero(+e.target.value) });
   };
 
   const handleOnClickPeople = (e) => {
     console.log("people", e.target.value);
+    setSelectName({ ...selectName, name: e.target.name });
     setUpdateMemo({ ...updateMemo, peopleId: IfZero(+e.target.value) });
   };
 
@@ -105,10 +113,25 @@ export default function EditThemePage() {
     navigate("/analytic/theEmotion");
   };
 
+  const onAddTheme = async (value) => {
+    await createThemeTagByUserId(authUser.id, value);
+    setEventToggle(!eventToggle);
+  };
+
+  const onAddPlace = async (value) => {
+    await createPlaceTagByUserId(authUser.id, value);
+    setEventToggle(!eventToggle);
+  };
+
+  const onAddPeople = async (value) => {
+    await createPeopleTagByUserId(authUser.id, value);
+    setEventToggle(!eventToggle);
+  };
+
   return (
     <>
       <NavBar2 path={"/analytic/theEmotion"} />
-      <div className="flex flex-col gap-8 justify-center items-center px-6">
+      <div className="w-[430px] flex flex-col gap-8 justify-center items-center px-6">
         <div className="text-3xl mx-4 font-medium">
           What were you doing when you felt
           <span style={{ color: TextColor() }} className={`${textDefault}`}>
@@ -119,24 +142,33 @@ export default function EditThemePage() {
 
         <TagsItemList
           name={"Theme"}
+          modalId={"4"}
           tagsData={theme.themeTags}
           tagsId={updateMemo.themeId}
           color={currentColor}
           onClick={handleOnClickTheme}
+          onAdd={onAddTheme}
+          selectName={selectName.name}
         />
         <TagsItemList
           name={"Place"}
+          modalId={"5"}
           tagsData={place.placeTags}
           tagsId={updateMemo.placeId}
           color={currentColor}
           onClick={handleOnClickPlace}
+          onAdd={onAddPlace}
+          selectName={selectName.name}
         />
         <TagsItemList
           name={"People"}
+          modalId={"6"}
           tagsData={people.peopleTags}
           tagsId={updateMemo.peopleId}
           color={currentColor}
           onClick={handleOnClickPeople}
+          onAdd={onAddPeople}
+          selectName={selectName.name}
         />
 
         <button
