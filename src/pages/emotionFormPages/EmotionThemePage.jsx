@@ -24,11 +24,14 @@ export default function EmotionThemePage() {
     createThemeTagByUserId,
     createPlaceTagByUserId,
     createPeopleTagByUserId,
+    deleteThemeTagByThemeId,
+    deletePlaceTagByPlaceId,
+    deletePeopleTagByPeopleId,
   } = useContext(TagsContext);
   const { authUser } = useContext(AuthContext);
   const [currentColor, setCurrentColor] = useState("");
   const [eventToggle, setEventToggle] = useState(false);
-  const [selectName, setSelectName] = useState({});
+  const [selectTag, setSelectTag] = useState({});
 
   useEffect(() => {
     // console.log("authUser", authUser);
@@ -101,17 +104,29 @@ export default function EmotionThemePage() {
 
   const handleOnClickTheme = (e) => {
     // console.log("theme", e.target.value);
-    setSelectName({ ...selectName, name: e.target.name });
+    setSelectTag({
+      ...selectTag,
+      themeName: e.target.name,
+      themeId: e.target.value,
+    });
     setEmotionMemo({ ...emotionMemo, themeId: IfZero(+e.target.value) });
   };
   const handleOnClickPlace = (e) => {
     // console.log("place", e.target.value);
-    setSelectName({ ...selectName, name: e.target.name });
+    setSelectTag({
+      ...selectTag,
+      placeName: e.target.name,
+      placeId: e.target.value,
+    });
     setEmotionMemo({ ...emotionMemo, placeId: IfZero(+e.target.value) });
   };
   const handleOnClickPeople = (e) => {
     // console.log("people", e.target.value);
-    setSelectName({ ...selectName, name: e.target.name });
+    setSelectTag({
+      ...selectTag,
+      peopleName: e.target.name,
+      peopleId: e.target.value,
+    });
     setEmotionMemo({ ...emotionMemo, peopleId: IfZero(+e.target.value) });
   };
 
@@ -129,7 +144,20 @@ export default function EmotionThemePage() {
     await createPeopleTagByUserId(authUser.id, value);
     setEventToggle(!eventToggle);
   };
+  const onDeleteThemeTag = async () => {
+    await deleteThemeTagByThemeId(+selectTag.themeId);
+    setEventToggle(!eventToggle);
+  };
 
+  const onDeletePlaceTag = async () => {
+    await deletePlaceTagByPlaceId(+selectTag.placeId);
+    setEventToggle(!eventToggle);
+  };
+
+  const onDeletePeopleTag = async () => {
+    await deletePeopleTagByPeopleId(+selectTag.peopleId);
+    setEventToggle(!eventToggle);
+  };
   return (
     <>
       <NavBar2 path={Path()} />
@@ -150,7 +178,8 @@ export default function EmotionThemePage() {
             color={currentColor}
             onClick={handleOnClickTheme}
             onAdd={onAddTheme}
-            selectName={selectName.name}
+            onDelete={onDeleteThemeTag}
+            selectName={selectTag.themeName}
           />
         </div>
         <div className="z-0">
@@ -161,7 +190,8 @@ export default function EmotionThemePage() {
             color={currentColor}
             onClick={handleOnClickPlace}
             onAdd={onAddPlace}
-            selectName={selectName.name}
+            onDelete={onDeletePlaceTag}
+            selectName={selectTag.placeName}
           />
         </div>
         <div className="z-0">
@@ -172,7 +202,8 @@ export default function EmotionThemePage() {
             color={currentColor}
             onClick={handleOnClickPeople}
             onAdd={onAddPeople}
-            selectName={selectName.name}
+            onDelete={onDeletePeopleTag}
+            selectName={selectTag.peopleName}
           />
         </div>
 

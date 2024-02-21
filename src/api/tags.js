@@ -18,3 +18,13 @@ export const createPlaceTag = (userId, newTagData) =>
 
 export const createPeopleTag = (userId, newTagData) =>
   axios.post(`/tags/createPeople/${userId}`, newTagData);
+
+//deleteTags
+export const deleteThemeTag = (themeId) =>
+  axios.delete(`/tags/deleteTheme/${themeId}`);
+
+export const deletePlaceTag = (placeId) =>
+  axios.delete(`/tags/deletePlace/${placeId}`);
+
+export const deletePeopleTag = (peopleId) =>
+  axios.delete(`/tags/deletePeople/${peopleId}`);

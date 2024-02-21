@@ -25,11 +25,14 @@ export default function EditThemePage() {
     createThemeTagByUserId,
     createPlaceTagByUserId,
     createPeopleTagByUserId,
+    deleteThemeTagByThemeId,
+    deletePlaceTagByPlaceId,
+    deletePeopleTagByPeopleId,
   } = useContext(TagsContext);
   const { authUser } = useContext(AuthContext);
   const [currentColor, setCurrentColor] = useState("");
   const [eventToggle, setEventToggle] = useState(false);
-  const [selectName, setSelectName] = useState({});
+  const [selectTag, setSelectTag] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -88,7 +91,11 @@ export default function EditThemePage() {
 
   const handleOnClickTheme = (e) => {
     console.log("theme", e.target.value, e.target.name);
-    setSelectName({ ...selectName, name: e.target.name });
+    setSelectTag({
+      ...selectTag,
+      themeName: e.target.name,
+      themeId: e.target.value,
+    });
     setUpdateMemo({
       ...updateMemo,
       themeId: IfZero(+e.target.value),
@@ -96,14 +103,22 @@ export default function EditThemePage() {
   };
 
   const handleOnClickPlace = (e) => {
-    console.log("place", e.target.value);
-    setSelectName({ ...selectName, name: e.target.name });
+    console.log("place", e.target.value, e.target.name);
+    setSelectTag({
+      ...selectTag,
+      placeName: e.target.name,
+      placeId: e.target.value,
+    });
     setUpdateMemo({ ...updateMemo, placeId: IfZero(+e.target.value) });
   };
 
   const handleOnClickPeople = (e) => {
-    console.log("people", e.target.value);
-    setSelectName({ ...selectName, name: e.target.name });
+    console.log("people", e.target.value, e.target.name);
+    setSelectTag({
+      ...selectTag,
+      peopleName: e.target.name,
+      peopleId: e.target.value,
+    });
     setUpdateMemo({ ...updateMemo, peopleId: IfZero(+e.target.value) });
   };
 
@@ -113,6 +128,7 @@ export default function EditThemePage() {
     navigate("/analytic/theEmotion");
   };
 
+  //Add
   const onAddTheme = async (value) => {
     await createThemeTagByUserId(authUser.id, value);
     setEventToggle(!eventToggle);
@@ -128,6 +144,21 @@ export default function EditThemePage() {
     setEventToggle(!eventToggle);
   };
 
+  //Delete
+  const onDeleteThemeTag = async () => {
+    await deleteThemeTagByThemeId(+selectTag.themeId);
+    setEventToggle(!eventToggle);
+  };
+
+  const onDeletePlaceTag = async () => {
+    await deletePlaceTagByPlaceId(+selectTag.placeId);
+    setEventToggle(!eventToggle);
+  };
+
+  const onDeletePeopleTag = async () => {
+    await deletePeopleTagByPeopleId(+selectTag.peopleId);
+    setEventToggle(!eventToggle);
+  };
   return (
     <>
       <NavBar2 path={"/analytic/theEmotion"} />
@@ -148,7 +179,8 @@ export default function EditThemePage() {
           color={currentColor}
           onClick={handleOnClickTheme}
           onAdd={onAddTheme}
-          selectName={selectName.name}
+          onDelete={onDeleteThemeTag}
+          selectName={selectTag.themeName}
         />
         <TagsItemList
           name={"Place"}
@@ -158,7 +190,8 @@ export default function EditThemePage() {
           color={currentColor}
           onClick={handleOnClickPlace}
           onAdd={onAddPlace}
-          selectName={selectName.name}
+          onDelete={onDeletePlaceTag}
+          selectName={selectTag.placeName}
         />
         <TagsItemList
           name={"People"}
@@ -168,7 +201,8 @@ export default function EditThemePage() {
           color={currentColor}
           onClick={handleOnClickPeople}
           onAdd={onAddPeople}
-          selectName={selectName.name}
+          onDelete={onDeletePeopleTag}
+          selectName={selectTag.peopleName}
         />
 
         <button

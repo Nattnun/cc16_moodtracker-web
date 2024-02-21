@@ -27,6 +27,11 @@ export default function TagsItemList({
     setInput({ ...input, name: e.target.value });
   };
 
+  const handleOnDelete = async () => {
+    await onDelete();
+    document.getElementById(`my_DELETE_modal_${name}_${modalId}`).close();
+  };
+
   return (
     <div className="z-0">
       <h3 className="text-xl font-medium">{name}</h3>
@@ -129,7 +134,11 @@ export default function TagsItemList({
             Are you sure you want to delete {selectName} tag
           </h3>
 
-          <div role="button" className="btn w-[275px] bg-angryRed">
+          <div
+            onClick={handleOnDelete}
+            role="button"
+            className="btn w-[275px] bg-angryRed"
+          >
             DELETE
           </div>
         </div>

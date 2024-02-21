@@ -53,6 +53,35 @@ export default function TagsContextProvider({ children }) {
     }
   };
 
+  //delete
+
+  const deleteThemeTagByThemeId = async (themeId) => {
+    try {
+      await tagsApi.deleteThemeTag(themeId);
+      console.log("deleteComplete");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const deletePlaceTagByPlaceId = async (placeId) => {
+    try {
+      await tagsApi.deletePlaceTag(placeId);
+      console.log("deleteComplete");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const deletePeopleTagByPeopleId = async (peopleId) => {
+    try {
+      await tagsApi.deletePeopleTag(peopleId);
+      console.log("deleteComplete");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <TagsContext.Provider
       value={{
@@ -65,6 +94,9 @@ export default function TagsContextProvider({ children }) {
         createThemeTagByUserId,
         createPlaceTagByUserId,
         createPeopleTagByUserId,
+        deleteThemeTagByThemeId,
+        deletePlaceTagByPlaceId,
+        deletePeopleTagByPeopleId,
       }}
     >
       {children}
