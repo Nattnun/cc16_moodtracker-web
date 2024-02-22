@@ -29,7 +29,7 @@ export default function TagsContextProvider({ children }) {
   const createThemeTagByUserId = async (userId, newTagData) => {
     try {
       const res = await tagsApi.createThemeTag(userId, newTagData);
-      console.log("fromTagContext", res);
+      // console.log("fromTagContext", res);
     } catch (err) {
       console.log(err);
     }
@@ -38,7 +38,7 @@ export default function TagsContextProvider({ children }) {
   const createPlaceTagByUserId = async (userId, newTagData) => {
     try {
       const res = await tagsApi.createPlaceTag(userId, newTagData);
-      console.log("fromTagContext", res);
+      // console.log("fromTagContext", res);
     } catch (err) {
       console.log(err);
     }
@@ -47,7 +47,7 @@ export default function TagsContextProvider({ children }) {
   const createPeopleTagByUserId = async (userId, newTagData) => {
     try {
       const res = await tagsApi.createPeopleTag(userId, newTagData);
-      console.log("fromTagContext", res);
+      // console.log("fromTagContext", res);
     } catch (err) {
       console.log(err);
     }
@@ -58,7 +58,7 @@ export default function TagsContextProvider({ children }) {
   const deleteThemeTagByThemeId = async (themeId) => {
     try {
       await tagsApi.deleteThemeTag(themeId);
-      console.log("deleteComplete");
+      // console.log("deleteComplete");
     } catch (err) {
       console.log(err);
     }
@@ -67,7 +67,7 @@ export default function TagsContextProvider({ children }) {
   const deletePlaceTagByPlaceId = async (placeId) => {
     try {
       await tagsApi.deletePlaceTag(placeId);
-      console.log("deleteComplete");
+      // console.log("deleteComplete");
     } catch (err) {
       console.log(err);
     }
@@ -76,7 +76,7 @@ export default function TagsContextProvider({ children }) {
   const deletePeopleTagByPeopleId = async (peopleId) => {
     try {
       await tagsApi.deletePeopleTag(peopleId);
-      console.log("deleteComplete");
+      // console.log("deleteComplete");
     } catch (err) {
       console.log(err);
     }

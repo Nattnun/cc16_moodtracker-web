@@ -224,7 +224,7 @@ export default function MemoContextProvider({ children }) {
   const updateMemoById = async (memoId, memoUpdate) => {
     try {
       const updateData = await memoApi.updateMemoByMemoId(memoId, memoUpdate);
-      console.log("updateData", updateData);
+      // console.log("updateData", updateData);
     } catch (err) {
       console.log(err);
     }
