@@ -36,9 +36,6 @@ export default function EditMemoPage() {
   const handleOnChange = (e) => {
     setUpdateMemo({
       ...updateMemo,
-      themeId: null,
-      placeId: null,
-      peopleId: null,
       memo: e.target.value,
     });
   };
