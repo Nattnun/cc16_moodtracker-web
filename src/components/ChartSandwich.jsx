@@ -15,7 +15,7 @@ export default function ChartSandwich({ data }) {
          drop-shadow-lg`}
               ></div>
             ) : (
-              <div className="flex flex-col origin-center -space-y-2">
+              <div className="flex flex-col h-[80px] justify-end -space-y-3 hover:-space-y-2 transition-all ease-out duration-1000">
                 {el.Memo.map((subEl, index) => {
                   function Color() {
                     if (
