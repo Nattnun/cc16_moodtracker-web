@@ -45,7 +45,7 @@ export default function ChartSandwich({ data }) {
                       key={subEl.id}
                       style={{ zIndex: `${subEl.id}` }}
                       className={`bg-${Color()} h-[20px] w-[70px] rounded-[100%] 
-                  drop-shadow-lg`}
+                  drop-shadow-lg transition-all ease-out duration-800`}
                     ></div>
                   );
                 })}
